@@ -1,0 +1,29 @@
+<fieldset>
+  <legend>Add content</legend>
+
+
+  <!-- Body // "Description" -->
+  <div class="form-group">
+    <label for="resource-description">Content</label><br>
+    <textarea class="form-control" id="resource-resource" name="resource" rows="10" />{{resource.resource}}</textarea>
+  </div>
+
+  <!-- Author // User -->
+  <div class="form-group">
+    <label for="content-author">Author</label><br>
+    <input class="form-control" id="resource-author" type="text" name="author" value="{{resource.author}}"/>
+  </div>
+
+  <!-- time stamp -->
+  <div class="form-group">
+    <input class="form-control" id="timestamp" type="hidden" name="timestamp" value="{{resource.time}}" />
+  </div>
+
+  <!-- hashtag -->
+  <div class="form-group">
+    <label for="hashtag">Group</label><br>
+    <input class="form-control" id="hashtag" type="text" name="hashtag" value="{{resource.hashtag}}" />
+  </div>
+
+
+</fieldset>
