@@ -1,8 +1,22 @@
 const express = require('express');
+
+// var firebase = require('firebase');
+
+// var fireApp = firebase.initializeApp({
+//   apiKey: '<your-api-key>',
+//   authDomain: '<your-auth-domain>',
+//   databaseURL: '<your-database-url>',
+//   projectId: '<your-cloud-firestore-project>',
+//   storageBucket: '<your-storage-bucket>',
+//   messagingSenderId: '<your-sender-id>'
+// });
+
 const app = express();
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 var admin = false;
+
+
 
 
 //middleware for JSON data

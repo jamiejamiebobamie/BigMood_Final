@@ -21,6 +21,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
+    "firebase": "^5.8.2",
     "handlebars": "^4.0.12",
     "method-override": "^3.0.0",
     "mongodb": "^3.1.13",
