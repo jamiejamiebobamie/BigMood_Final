@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 const List = require('../models/list');
-// var admin = require('../app')
+const Resource = require('../models/resource');
+var admin = require('../app');
 
+module.exports = function(app) {
 
     // NEW resource form
     app.get('/lists', (req, res) => {
@@ -19,3 +21,5 @@ const List = require('../models/list');
         console.log(err.message);
       })
   });
+
+};
