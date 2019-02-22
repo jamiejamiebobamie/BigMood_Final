@@ -1,13 +1,30 @@
 const express = require('express');
 const app = express();
 const Resource = require('../models/resource');
-var admin = require('../app')
+var admin = require('../app');
 
+module.exports = function(app) {
+
+    //ROOT ROUTE
+    //https://stackoverflow.com/questions/39277670/how-to-find-random-record-in-mongoose
+    app.get('/', (req, res) => {
+     Resource.count().exec(function (err, count) {
+        // "Get a random entry"
+        var random = Math.floor(Math.random() * count)
+       // "Again query all users but only fetch one offset by our random #""
+        Resource.findOne().skip(random).exec(
+          function (err, result) {
+           // "Tada! random user"
+            console.log(result)
+            res.render('home', { resource: result });
+          })
+      })
+    });
 
     // NEW resource form
     app.get('/resources/new', (req, res) => {
       res.render('resources-new', {});
-  });
+    });
 
     // CREATE NEW resource
     app.post('/resources', (req, res) => {
@@ -18,7 +35,7 @@ var admin = require('../app')
       }).catch((err) => {
         console.log(err.message);
       })
-  });
+    });
 
 
 
@@ -37,7 +54,7 @@ var admin = require('../app')
         .catch((err) => {
       console.log(err.message)
     });
-});
+  });
 
       //admin see all to edit
       app.get('/index', (req, res) => {
@@ -55,7 +72,7 @@ var admin = require('../app')
       Resource.findById(req.params.id, function(err, resource) {
         res.render('resources-edit', {resource: resource});
       })
-  });
+    });
 
 
     // UPDATE... does this replace EDIT? ...guess not...
@@ -77,6 +94,6 @@ var admin = require('../app')
       }).catch((err) => {
         console.log(err.message);
       })
-  });
+    });
 
-module.exports = app;
+};
