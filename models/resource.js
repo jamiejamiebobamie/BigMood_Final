@@ -2,14 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const ResourceSchema = new Schema({
-    resource: String, //used to be "compliment"
-    author: String, //outdated version(pre-user version)
+    resource: String,
+    link: String, //outdated version(pre-user version)
     user: String,
     time: String,
-    upvotes: Number, //NOT IMPLEMENTED
     flagged: Boolean,
     ignoreFlag: Boolean,
-    hashtag: [String]
+    mood: Array
 });
 
 module.exports = mongoose.model('Resource', ResourceSchema);

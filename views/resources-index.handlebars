@@ -4,8 +4,8 @@
   {{#each resources}}
     <div class="col-sm-3">
       <h2><a href="/resources/{{this._id}}">{{this.resource}}</a></h2>
-      <!-- NOTE: this.resource above might be this.content -->
-      <small>{{this.author}}</small>
+      <!-- NOTE: this.content above might be this.resource -->
+      <small>{{this.link}}</small>
     </div>
   {{/each}}
 </div>

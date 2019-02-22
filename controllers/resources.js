@@ -37,6 +37,15 @@ module.exports = function(app) {
       })
     });
 
+    app.get('/moods/:mood', (req, res) => {
+      Resource.find({moods: {$all:[req.params.mood]}}).then(resources => {
+        console.log(resources)
+        res.render('by-mood', {resources: resources, mood: req.params.mood});
+      }).catch(err => {
+        console.log(err.message);
+      });
+    });
+
 
 
 

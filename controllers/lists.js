@@ -6,20 +6,26 @@ var admin = require('../app');
 
 module.exports = function(app) {
 
-    // NEW resource form
-    app.get('/lists', (req, res) => {
-      res.render('list', {});
+  // CK: "List: resources :: reddit_Post: reddit_Comment"
+
+  // // deep copy
+  // var listItem = jQuery.extend(true, {}, oldObject);
+  
+
+
+  // NEW resource form
+  app.get('/lists', (req, res) => {
+    res.render('list', {});
   });
 
-    // CREATE NEW resource
-    app.post('/lists', (req, res) => {
-      List.create(req.body).then((list) => {
-        console.log(list);
-        res.redirect(`/lists`)
-
-      }).catch((err) => {
-        console.log(err.message);
-      })
+  // CREATE NEW resource
+  app.post('/lists', (req, res) => {
+    List.create(req.body).then((list) => {
+      console.log(list);
+      res.redirect(`/lists`)
+    }).catch((err) => {
+      console.log(err.message);
+    })
   });
 
 };
