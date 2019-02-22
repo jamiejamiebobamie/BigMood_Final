@@ -22,22 +22,6 @@ app.use(express.static('public')); // sample images from past projects for testi
 require('./controllers/lists.js')(app);
 require('./controllers/resources.js')(app);
 
-//ROOT ROUTE
-//https://stackoverflow.com/questions/39277670/how-to-find-random-record-in-mongoose
-app.get('/', (req, res) => {
-    Resource.count().exec(function (err, count) {
-      // "Get a random entry"
-      var random = Math.floor(Math.random() * count)
-      // "Again query all users but only fetch one offset by our random #""
-      Resource.findOne().skip(random).exec(
-        function (err, result) {
-          // "Tada! random user"
-          console.log(result)
-          res.render('home', { resource: result });
-        })
-    })
-});
-
 app.listen(port, () => {
   console.log('App listening on port ' + port + '!');
 });
