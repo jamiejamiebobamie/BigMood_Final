@@ -16,7 +16,7 @@ module.exports = function(app) {
           function (err, result) {
            // "Tada! random user"
             console.log(result)
-            res.render('home', { resource: result });
+            res.render('landing', { resource: result });
           })
       })
     });
