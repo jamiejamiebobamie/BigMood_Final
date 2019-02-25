@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const app = express();
 const port = process.env.PORT || 9000;
+const cookieParser = require('cookie-parser');
+const jwt = require('express-jwt');
 
 // MIDDLEWARE
 mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/bigmood-final'), { useNewUrlParser: true }); // heroku db || local
@@ -16,11 +18,29 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // this bit must come below const app init AND before routes
 app.use(expressValidator()); // this MUST ALWAYS come AFTER body parser init
-app.use(express.static('public')); // sample images from past projects for testing 
+app.use(express.static('public')); // sample images from past projects for testing
+
+app.use(cookieParser());
+app.use(
+  jwt({
+    secret: "shhhhhhared-secret",
+    getToken: function fromHeaderOrCookie(req) {
+      //fromHeaderOrQuerystring
+      if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
+        return req.headers.authorization.split(" ")[1];
+      } else if (req.cookies && req.cookies.token) {
+        return req.cookies.token;
+      }
+      return null;
+    }
+  }).unless({ path: ["/", "/login", "/sign-up"] })
+);
 
 // REQUIRING CONTROLLERS
 require('./controllers/lists.js')(app);
 require('./controllers/resources.js')(app);
+require('./controllers/auth.js')(app);
+
 
 app.listen(port, () => {
   console.log('App listening on port ' + port + '!');

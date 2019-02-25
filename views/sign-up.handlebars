@@ -1,0 +1,22 @@
+<form action="/sign-up" method="POST" onsubmit="return false;">
+  <input type="text" size="30" value="" placeholder="username" required>
+  <input type="password" size="30" value="" placeholder="password" required>
+
+  <script type="text/javascript">
+  function signupViaAjax() {
+     fetch("/sign-up")
+       .then(function(data) {
+           Cookies.set('token', data.token);
+           console.log(data)
+         // Here you get the data to modify as you please
+       })
+       .catch(function(error) {
+         // If there is any error you will catch them here
+       });
+       window.location.href = "/";
+   }
+  </script>
+
+
+  <input type="submit" value="Sign In" onclick="signupViaAjax()">
+</form>

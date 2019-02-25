@@ -1,13 +1,41 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose"),
+   bcrypt = require("bcryptjs"),
+   Schema = mongoose.Schema;
 
-//NOTE TO CHERISH: not implemented for our project or my compliment generator and I have no idea how to
+ const UserSchema = new Schema({
+   createdAt: { type: Date },
+   updatedAt: { type: Date },
+   email: { type: String, unique: true, required: true },
+   password: { type: String, required: true },
+   first: { type: String, required: true },
+   last: { type: String, required: true }
+ });
 
-const UserSchema = new Schema({
-    username: String,
-    password: String,
-    email: String,
-    hashtag: [String]
-});
+ UserSchema.pre("save", function(next) {
+   // SET createdAt AND updatedAt
+   var now = new Date();
+   this.updatedAt = now;
+   if (!this.createdAt) {
+     this.createdAt = now;
+   }
 
-module.exports = mongoose.model('User', UserSchema);
+   // ENCRYPT PASSWORD
+   var user = this;
+   if (!user.isModified("password")) {
+     return next();
+   }
+   bcrypt.genSalt(10, function(err, salt) {
+     bcrypt.hash(user.password, salt, function(err, hash) {
+       user.password = hash;
+       next();
+     });
+   });
+ });
+
+ UserSchema.methods.comparePassword = function(password, done) {
+   bcrypt.compare(password, this.password, function(err, isMatch) {
+     done(err, isMatch);
+   });
+ };
+
+ module.exports = mongoose.model("User", UserSchema);
