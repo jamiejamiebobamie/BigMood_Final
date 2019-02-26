@@ -8,21 +8,21 @@ module.exports = function(app) {
 
   // CK: "List: resources :: reddit_Post: reddit_Comment"
 
-  // // deep copy
+  // // deep copy/clone
   // var listItem = jQuery.extend(true, {}, oldObject);
   
 
 
-  // NEW resource form
-  app.get('/lists', (req, res) => {
+  // NEW list form
+  app.get('/list', (req, res) => {
     res.render('list', {});
   });
 
-  // CREATE NEW resource
-  app.post('/lists', (req, res) => {
+  // CREATE NEW list
+  app.post('/list', (req, res) => {
     List.create(req.body).then((list) => {
       console.log(list);
-      res.redirect(`/lists`)
+      res.redirect(`/list`)
     }).catch((err) => {
       console.log(err.message);
     })

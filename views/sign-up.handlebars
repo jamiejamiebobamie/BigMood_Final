@@ -1,6 +1,7 @@
 <form action="/sign-up" method="POST" onsubmit="return false;">
-  <input type="text" size="30" value="" placeholder="username" required>
-  <input type="password" size="30" value="" placeholder="password" required>
+{{!-- CK: The following input tags originally had "required" at the end - I have removed them. Put them back if this change has made the whole thing non-functional. --}}
+  <input type="text" size="30" value="" placeholder="username">
+  <input type="password" size="30" value="" placeholder="password">
 
   <script type="text/javascript">
   function signupViaAjax() {

@@ -8,17 +8,17 @@ module.exports = function(app) {
     //ROOT ROUTE
     //https://stackoverflow.com/questions/39277670/how-to-find-random-record-in-mongoose
     app.get('/', (req, res) => {
-     Resource.count().exec(function (err, count) {
+      Resource.count().exec(function (err, count) {
         // "Get a random entry"
         var random = Math.floor(Math.random() * count)
-       // "Again query all users but only fetch one offset by our random #""
+        // "Again query all users but only fetch one offset by our random #""
         Resource.findOne().skip(random).exec(
           function (err, result) {
            // "Tada! random user"
             console.log(result)
             res.render('landing', { resource: result });
-          })
-      })
+        });
+      });
     });
 
     // NEW resource form
@@ -31,20 +31,33 @@ module.exports = function(app) {
       Resource.create(req.body).then((resource) => {
         console.log(resource);
         res.redirect(`/`)
-
       }).catch((err) => {
-        console.log(err.message);
-      })
-    });
-
-    app.get('/moods/:mood', (req, res) => {
-      Resource.find({moods: {$all:[req.params.mood]}}).then(resources => {
-        console.log(resources)
-        res.render('by-mood', {resources: resources, mood: req.params.mood});
-      }).catch(err => {
         console.log(err.message);
       });
     });
+
+    // // Index/Read for a SPECIFIC mood
+    // app.get('/moods/:mood', (req, res) => {
+    //   Resource.find({moods: {$all:[req.params.mood]}}).then(resources => {
+    //     console.log(resources)
+    //     res.render('by-mood', {resources: resources, mood: req.params.mood});
+    //   }).catch(err => {
+    //     console.log(err.message);
+    //   });
+    // });
+
+    // CK: note to self - address this later
+    // CK: note to self - have the buttons on landing page direct to here
+    // CK: note to self - will need to have some other things direct to here, too (ex. "show me another" button on a single shown recommendation)
+    // // SHOW a SINGLE resource for a SPECIFIC mood
+    // app.get('/:mood', (req, res) => {
+    //   // find resource
+    //   Resource.findById(req.params.id).then(resource => {
+    //       res.render('resources-show-admin', { resource: resource})})
+    //       .catch((err) => {
+    //     console.log(err.message)
+    //   });
+    // });
 
 
 
@@ -77,6 +90,7 @@ module.exports = function(app) {
       });
 
     // EDIT a resource by clicking on the edit link in the shown resource
+    // CK: EDIT yields the FORM to make changes to an existing item
     app.get('/resources/:id/edit', (req, res) => {
       Resource.findById(req.params.id, function(err, resource) {
         res.render('resources-edit', {resource: resource});
@@ -85,6 +99,7 @@ module.exports = function(app) {
 
 
     // UPDATE... does this replace EDIT? ...guess not...
+    // CK: UPDATE represents the actual process of ENACTING the changes made by user in the form that they received from EDIT. It's the same way CREATE actually ... well ... CREATES the thing that the user wrote the contents of in the form they received from NEW.
     app.put('/resources/:id', (req, res) => {
       Resource.findByIdAndUpdate(req.params.id, req.body).then(resource => {
           res.redirect('/index');
