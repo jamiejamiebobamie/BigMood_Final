@@ -41,9 +41,10 @@ app.use(
 );
 
 // REQUIRING CONTROLLERS
+require('./controllers/auth.js')(app);
 require('./controllers/lists.js')(app);
 require('./controllers/resources.js')(app);
-require('./controllers/auth.js')(app);
+
 
 
 app.listen(port, () => {
