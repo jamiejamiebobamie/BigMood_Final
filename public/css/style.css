@@ -28,6 +28,7 @@ body{
 
 }
 
+
 .landing{
     display: flex;
     align-items: center;
@@ -44,4 +45,12 @@ button{
     width: 20vw;
     max-width: 150px;
     /* min-width: 50px; */
+}
+
+.one-tagged-mood {
+  border: 2px solid;
+  width: auto !important;
+  padding: 20px 15px;
+  border-radius: 2rem;
+  margin-top: 15px;
 }
