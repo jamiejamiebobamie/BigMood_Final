@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const List = require('../models/list'); // may need if we're sticking the deep copy route here
 const Resource = require('../models/resource');
 var admin = require('../app');
+
+// CK: "List: resources :: redditPost: redditComment"
 
 module.exports = function(app) {
 
@@ -22,16 +25,19 @@ module.exports = function(app) {
     });
 
     // NEW resource form
-    app.get('/resources/new', (req, res) => {
+    app.get('/resources/new', function(req, res) {
       res.render('resources-new', {});
     });
 
     // CREATE NEW resource
-    app.post('/resources', (req, res) => {
-      Resource.create(req.body).then((resource) => {
+    app.post('/resources', function(req, res) {
+      Resource.create(req.body).then(function(resource) {
+        parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
+        resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
         console.log(resource);
-        res.redirect(`/`)
-      }).catch((err) => {
+        resource.save();
+        res.redirect(`/`);
+      }).catch(function(err) {
         console.log(err.message);
       });
     });
@@ -69,29 +75,29 @@ module.exports = function(app) {
 
 
   // SHOW A single resource for ADMIN USE ONLY
-  app.get('/resources/:id', (req, res) => {
+  app.get('/resources/:id', function(req, res) {
     // find resource
-    Resource.findById(req.params.id).then(resource => {
+    Resource.findById(req.params.id).then(function(resource) {
         res.render('resources-show-admin', { resource: resource})})
-        .catch((err) => {
+        .catch(function(err) {
       console.log(err.message)
     });
   });
 
       //admin see all to edit
-      app.get('/index', (req, res) => {
+      app.get('/index', function(req, res) {
           Resource.find()
-             .then(resources => {
+             .then(function(resources) {
                res.render('resources-index', { resources: resources });
              })
-             .catch(err => {
+             .catch(function(err) {
                console.log(err);
              })
       });
 
     // EDIT a resource by clicking on the edit link in the shown resource
     // CK: EDIT yields the FORM to make changes to an existing item
-    app.get('/resources/:id/edit', (req, res) => {
+    app.get('/resources/:id/edit', function(req, res) {
       Resource.findById(req.params.id, function(err, resource) {
         res.render('resources-edit', {resource: resource});
       })
@@ -100,22 +106,22 @@ module.exports = function(app) {
 
     // UPDATE... does this replace EDIT? ...guess not...
     // CK: UPDATE represents the actual process of ENACTING the changes made by user in the form that they received from EDIT. It's the same way CREATE actually ... well ... CREATES the thing that the user wrote the contents of in the form they received from NEW.
-    app.put('/resources/:id', (req, res) => {
-      Resource.findByIdAndUpdate(req.params.id, req.body).then(resource => {
+    app.put('/resources/:id', function(req, res) {
+      Resource.findByIdAndUpdate(req.params.id, req.body).then(function(resource) {
           res.redirect('/index');
         })
-        .catch(err => {
+        .catch(function(err) {
           console.log(err.message)
         })
     });
 
 
     // DELETE one resource from the delete button on the "shown" resource page
-    app.delete('/resources/:id', function (req, res) {
+    app.delete(`/resources/:id`, function (req, res) {
       console.log("DELETE resource")
-      Resource.findByIdAndRemove(req.params.id).then((resource) => {
+      Resource.findByIdAndRemove(req.params.id).then(function(resource) {
          res.redirect('/index');
-      }).catch((err) => {
+      }).catch(function(err) {
         console.log(err.message);
       })
     });

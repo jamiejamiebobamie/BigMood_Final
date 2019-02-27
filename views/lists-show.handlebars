@@ -1,5 +1,3 @@
-<!-- CK: Will add button to GET the new list form (NEW) -->
-
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <h1>{{list.title}}</h1>
@@ -32,22 +30,22 @@
     {{!-- CK: And indeed --}}
     {{!-- CK: I was so happy --}}
     {{!-- CK: #debugging for babies --}}
-    {{!-- CK: Hashtag it's always the little things --}}
-    {{!-- CK: Hashtag why is this process so enjoyable --}}
-    {{!-- CK: Hashtag woohooooooooo --}}
+    {{!-- CK: #it's always the little things --}}
+    {{!-- CK: #why is this process so enjoyable --}}
+    {{!-- CK: #woohooooooooo --}}
 
-
-    {{!-- CK: Buttons to EDIT & DELETE the List --}}
-    {{!-- CK: Still need to write the edit and delete routes lol --}}
+    {{!-- CK: Buttons to EDIT the List (title, description) --}}
     <div>
       <span style="float:right">
         <p><a href="/resources/{{resource._id}}/edit">Edit</a></p>
-        <p><form method="POST" action="/resources/{{resource._id}}?_method=DELETE">
-          <button class="btn btn-primary" type="submit">Delete</button>
-        </form></p>
       </span>
     </div>
 
 
   </div>
 </div>
+
+{{!-- Delete button. Not using at this point in time. WAS located directly beneath the EDIT link. --}}
+{{!-- <p><form method="POST" action="/resources/{{resource._id}}?_method=DELETE">
+  <button class="btn btn-primary" type="submit">Delete</button>
+</form></p> --}}
