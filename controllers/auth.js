@@ -1,3 +1,5 @@
+// CK: Yo me. Add a login route
+
 const jwt = require('jsonwebtoken');
 
 const express = require('express');
@@ -19,19 +21,19 @@ var admin = require('../app');
 
 module.exports = function(app) {
 // NEW sign-up form
-app.get('/sign-up', (req, res) => {
+app.get('/sign-up', function(req, res) {
   res.render('sign-up', {});
 });
 
 
 // CREATE user
-app.post('/sign-up', (req, res) => {
+app.post('/sign-up', function(req, res) {
 
     const newUser = new User(req.body);
 
     const token = jwt.sign({ _id: user._id }, 'shhhhhhared-secret');
 
-    newUser.save(function (err) {
+    newUser.save(function(err) {
         if (err) console.log(err);
         const token = jwt.sign({ _id: user._id }, 'shhhhhhared-secret');
         // saved!

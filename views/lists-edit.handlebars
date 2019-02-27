@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="POST" action="/lists/{{list._id}}?_method=PUT">
+            <legend>Edit List</legend>
+                {{> lists-form}}
+            <!--BUTTON-->
+            <p>
+                <button class="btn btn-primary" type="submit">Save List</button>
+            </p>
+            <!--CANCEL-->
+            <a onclick="goBack()">Cancel</a>
+        </form>
+    </div>
+</div>

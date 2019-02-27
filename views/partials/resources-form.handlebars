@@ -1,7 +1,5 @@
 <fieldset>
-  <legend>Add content</legend>
-
-
+  
   <!-- Body // "Description" -->
   <div class="form-group">
     <label for="resource-title">Quick Description of Media</label><br>
@@ -14,6 +12,7 @@
     <input class="form-control" id="resource-link" type="text" name="author" value="{{resource.link}}"/>
   </div>
 
+  {{!-- CK: I don't believe we have any use for this at present, but I left it because it could come in useful, depending on which direction we take Big Mood in the future. --}}
   <!-- time stamp -->
   <div class="form-group">
     <input class="form-control" id="timestamp" type="hidden" name="timestamp" value="{{resource.time}}" />
@@ -21,8 +20,8 @@
 
   <!-- MOOD -->
   <div class="form-group">
-    <label for="mood">Mood</label><br>
-    <input class="form-control" id="resource-mood" type="text" name="mood" value="{{resource.mood}}" />
+    <label for="resource-mood">Mood</label><br>
+    <input class="form-control" id="resource-mood" type="text" name="moodString" value="{{moodString}}" />
   </div>
 
 
