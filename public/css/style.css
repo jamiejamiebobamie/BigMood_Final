@@ -16,6 +16,10 @@
   }
 }
 
+legend{
+    color: white;
+}
+
 .navbar-navbar-default{
     padding: 5%;
 
@@ -50,7 +54,7 @@ body{
 
 .jumbotron{
     /*
-        the jumbotron was looking very rotten potatoes-esque
+        the jumbotron was looking very rotten-potatoes-esque
         so I made the background transparent.
     */
     background: transparent;
@@ -76,18 +80,18 @@ body{
     and the buttons get a margin which acts like vertical 'padding'
     between the buttons (not to be confused with the "padding" property).
 */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .landing {
     flex-direction: column;
   }
   button{
-      margin:30px
+      margin:3vw;
   }
 }
 
 button{
     min-width: 150px;
-}
+ }
 
 /*
     button style generated with the help of:
@@ -120,6 +124,12 @@ button {
 	text-shadow:0px 1px 0px #ffffff;
     align-self: center;
     text-align: center;
+    background: #fff; /* fallback color for old browsers */ background: rgba(255, 255, 255, 0.5); */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
 }
 
 button:hover {
