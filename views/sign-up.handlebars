@@ -1,23 +1,21 @@
-<form action="/sign-up" method="POST" onsubmit="return false;">
-{{!-- CK: The following input tags originally had "required" at the end - I have removed them. Put them back if this change has made the whole thing non-functional. --}}
-  <input type="text" size="30" value="" placeholder="username">
-  <input type="password" size="30" value="" placeholder="password">
+<fieldset>
+  <div class="row">
+    <div class="col-sm-4">
+      <form action="/sign-up" method="POST">
+        <legend>Sign Up</legend>
 
-  <script type="text/javascript">
-  function signupViaAjax() {
-     fetch("/sign-up")
-       .then(function(data) {
-           Cookies.set('token', data.token);
-           console.log(data)
-         // Here you get the data to modify as you please
-       })
-       .catch(function(error) {
-         // If there is any error you will catch them here
-       });
-       window.location.href = "/";
-   }
-  </script>
+        <div class="form-group">
+          <input type="text" name="username" class="form-control" id="username" size="30" placeholder="username">
+        </div>
 
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" id="password" size="30" placeholder="password">
+        </div>
 
-  <input type="submit" value="Sign Up" onclick="signupViaAjax()">
-</form>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary">Let's Go!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</fieldset>

@@ -1,10 +1,9 @@
-const express = require('express');
-const app = express();
 const List = require('../models/list');
 const Resource = require('../models/resource');
-var admin = require('../app');
+const User = require('../models/user');
+// var admin = require('../app');
 
-// CK: "List: resources :: redditPost: redditComment"
+// CK: "List: Resources :: redditPost: redditComment"
 
 module.exports = function(app) {
 

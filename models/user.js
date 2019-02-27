@@ -5,22 +5,20 @@ const Schema = mongoose.Schema;
  const UserSchema = new Schema({
    createdAt: { type: Date },
    updatedAt: { type: Date },
-   email: { type: String, unique: true, required: true },
-   password: { type: String, required: true },
-   first: { type: String, required: true },
-   last: { type: String, required: true }
+   username: { type: String, required: true },
+   password: { type: String, required: true }
  });
 
  UserSchema.pre("save", function(next) {
    // SET createdAt AND updatedAt
-   var now = new Date();
+   const now = new Date();
    this.updatedAt = now;
    if (!this.createdAt) {
      this.createdAt = now;
    }
 
    // ENCRYPT PASSWORD
-   var user = this;
+   const user = this;
    if (!user.isModified("password")) {
      return next();
    }

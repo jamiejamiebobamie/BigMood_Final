@@ -1,51 +1,66 @@
 // CK: Yo me. Add a login route
 
-const jwt = require('jsonwebtoken');
-
-const express = require('express');
-const app = express();
 const List = require('../models/list');
 const Resource = require('../models/resource');
 const User = require('../models/user');
-var admin = require('../app');
-
-// function signupViaAjax() {
-//    fetch("/sign-up")
-//      .then(function(data) {
-//        // Here you get the data to modify as you please
-//      })
-//      .catch(function(error) {
-//        // If there is any error you will catch them here
-//      });
-//  }
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+// var admin = require('../app');
 
 module.exports = function(app) {
-// NEW sign-up form
-app.get('/sign-up', function(req, res) {
-  res.render('sign-up', {});
-});
 
+  // NEW sign-up form
+  app.get('/sign-up', function(req, res) {
+    res.render('sign-up');
+  });
 
-// CREATE user
-app.post('/sign-up', function(req, res) {
+  // CREATE user, i.e. user is signed up!
+  app.post('/sign-up', function(req, res) {
+    const newUser = new User(req.body);
+    newUser.save().then((newUser) => {
+      var token = jwt.sign({_id: newUser._id}, process.env.SECRET, {expiresIn: "30 days"});
+      res.cookie('nToken', token, {maxAge: 900000, httpOnly: true});
+      res.redirect('/');
+    }).catch(function(err) {
+      console.log(err.message);
+      return res.status(400).send({err: err});
+    });
+  });
+  
+  // Login form
+  app.get('/login', function(req, res) {
+    res.render('login');
+  });
 
+  // User is logged in!
+  app.post('/login', function(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
     const newUser = new User(req.body);
 
-    const token = jwt.sign({ _id: user._id }, 'shhhhhhared-secret');
+    User.findOne({username}, 'username password')
+      .then(function(newUser) {
+        if (!newUser) {
+          return res.status(401).send({message: 'Invalid credentials'});
+        }
+        newUser.comparePassword(password, function(err, isMatch) {
+          if (!isMatch) {
+            return res.status(401).send({message: 'Invalid credentials'});
+          }
+          const token = jwt.sign({_id: newUser._id}, process.env.SECRET, {
+            expiresIn: '30 days'
+          });
+          res.cookie('nToken', token, {maxAge: 900000, httpOnly: true});
+          res.redirect('/');
+        });
+      }).catch(function(err) {
+        console.log(err);
+      });
+  });
 
-    newUser.save(function(err) {
-        if (err) console.log(err);
-        const token = jwt.sign({ _id: user._id }, 'shhhhhhared-secret');
-        // saved!
-        console.log(token)
-    });
-
-    console.log(req.body);
-    console.log(token)
-
-    res.redirect(`/`);
-  // }).catch((err) => {
-  //   console.log(err.message);
-  //   });
-    });
+  // Log out
+  app.get('/logout', function(req, res) {
+    res.clearCookie('nToken');
+    res.redirect('/');
+  });
 }
