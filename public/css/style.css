@@ -16,50 +16,31 @@
   }
 }
 
-
-/* @keyframes panning {
-  0% {
-    background-position: 0% 0%;
-  }
-  25% {
-    background-position: 100% 100%;
-  }
-   50% {
-    background-position: 100% 0%;
-  }
-  75% {
-    background-position: 0 100%;
-  }
-  200% {
-    background-position: 0 0;
-  }
-} */
-
 .navbar-navbar-default{
     padding: 5%;
-      /* padding-bottom: 10%; */
-    /* opacity: .5;
-    background-color: #5CCAF1; */
+
+    /* original blue color of the site: */
+    /* background-color: #5CCAF1; */
 }
 
 body{
-    /* height: 100%;
-    width: 100%;
-    min-height: 600px;
-    min-width: 800px; */
     position: relative;
     height: 100%;
     width: 100%;
     background-image: url('https://images.pexels.com/photos/392586/pexels-photo-392586.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-    /* background-color: #5CCAF1; */
-    background-size: 300%;
-    animation: panning 300s infinite linear;
-}
 
-.lead{
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+    /* original blue color of the site: */
+    /* background-color: #5CCAF1; */
+
+    /*
+        the background image needs to be sized properly
+        or you will get a wallpaper like effect
+        of the image repeating itself.
+    */
+    background-size: 300%;
+
+    /* lower the panning second to increase the speed of the pan */
+    animation: panning 300s infinite linear;
 }
 
 .logo{
@@ -68,59 +49,36 @@ body{
 }
 
 .jumbotron{
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: space-around; */
-    /* width: 50vw; */
-        /* opacity: .8; */
-background: transparent;
+    /*
+        the jumbotron was looking very rotten potatoes-esque
+        so I made the background transparent.
+    */
+    background: transparent;
     margin: auto;
-    /* width: 50%; */
     padding: 10px;
-  width: 95%;
-  padding-bottom: 10%;
+    width: 95%;
+    padding-bottom: 10%;
 }
-
-/* .jumbotron:hover{
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: space-around; */
-    /* width: 50vw; */
-    /* opacity: 1;
-
-    margin: auto; */
-    /* width: 50%; */
-    /* padding: 10px;
-  width: 95%;
-  padding-bottom: 10%; */
-
-
-/*
-} */
-
-
 
 .landing{
     padding-top: 10%;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     justify-content: space-around;
     flex-direction: row;
-    /* display: inline; */
-    /* flex-flow: row wrap; */
-/*
-    height: 50px;
-    width: 50%; */
 }
 
-
+/*
+    not entirely sure how the code below works,
+    but basically 1000px is the cut off
+    for the landing page to be flex-direction: row.
+    under 1000px and the landing page switches to flex-direction column
+    and the buttons get a margin which acts like vertical 'padding'
+    between the buttons (not to be confused with the "padding" property).
+*/
 @media screen and (max-width: 1000px) {
   .landing {
     flex-direction: column;
-    /* justify-content: space-between; */
-    /* padding:5px;
-    padding-top: 10%; */
   }
   button{
       margin:30px
@@ -128,27 +86,14 @@ background: transparent;
 }
 
 button{
-    /* align-self: center;
-    text-align: center;
-    font-size: 23px; */
-    /* font-size: 2vw; */
-    /* height: 10vw; */
-    /* width: 20vw; */
-    /* width: 60%;
-    padding-top: 10%; */
-    /* width: 150px;
-    height: 150px;
-    border-radius: 12px; */
     min-width: 150px;
-    /* color: white; */
-
 }
 
-/* button style generated with the help of: */
-/* https://www.bestcssbuttongenerator.com/#/28 */
-
+/*
+    button style generated with the help of:
+    https://www.bestcssbuttongenerator.com/#/28
+*/
 button {
-
 	-moz-box-shadow:inset 0px 1px 6px 1px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 6px 1px #ffffff;
 	box-shadow:inset 0px 1px 6px 1px #ffffff;
@@ -193,22 +138,10 @@ button:active {
 }
 
 .btn{
-    /* background: transparent; */
     align-self: center;
     text-align: center;
     font-size: 23px;
-    /* font-size: 2vw;
-    height: 10vw;
-    width: 20vw; */
-    /* width: 60%;
-    padding-top: 10%; */
-    /* min-width: 50px; */
 }
-
-/* .btn_angry{
-    border: 2px solid #f44336;
-    background-color: #f44336;
-} */
 
 .one-tagged-mood {
   border: 2px solid;
