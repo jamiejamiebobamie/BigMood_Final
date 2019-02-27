@@ -15,7 +15,7 @@ mongoose.set('useFindAndModify', false) // CK: because of all the deprecation wa
 mongoose.set('useCreateIndex', true); // CK: Another deprecation warning fix. https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat
 mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/bigmood-final'), { useNewUrlParser: true }); // CK: heroku db || local
 app.use(methodOverride('_method')) // CK: override with POST having ?_method=DELETE or ?_method=PUT
-app.engine('handlebars', exphbs({defaultLayout: 'main'})); // CK: setting defaults or it won't know what to show
+app.engine('handlebars', exphbs({defaultLayout: 'main'})); // CK: setting defaults or it will not know what to show
 app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // CK: this bit must come below const app init AND before routes. **Uncertain about whether extended should be true or false**
