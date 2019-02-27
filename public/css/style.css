@@ -99,16 +99,32 @@ background: transparent;
 } */
 
 
+
 .landing{
     padding-top: 10%;
     display: flex;
     align-items: center;
     /* justify-content: center; */
     justify-content: space-around;
-    flex-flow: row wrap;
+    flex-direction: row;
+    /* display: inline; */
+    /* flex-flow: row wrap; */
 /*
     height: 50px;
     width: 50%; */
+}
+
+
+@media screen and (max-width: 1000px) {
+  .landing {
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* padding:5px;
+    padding-top: 10%; */
+  }
+  button{
+      margin:30px
+  }
 }
 
 button{
