@@ -3,41 +3,23 @@
 <head>
   <meta charset="utf-8">
   <title>Big Mood</title>
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<style>
+  <link rel="stylesheet" href="css/style.css">
 
-.navbar-navbar-default{
-    background-color: #5CCAF1;
-}
+  <!-- Having issues with this... See console on page load for error. -->
+  <script src="/js_cookie.js"></script>
 
-body{
-
-    background-color: #5CCAF1;
-}
-
-.lead{
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-}
-
-.landing{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-</style>
-<script src="/js_cookie.js"></script>
 </head>
-<body>
 
-{{> navbar}}
+    <body>
 
-<div class="container">
-  {{{body}}}
-</div>
+    {{> navbar}}
+
+    <div class="container">
+      {{{body}}}
+    </div>
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
