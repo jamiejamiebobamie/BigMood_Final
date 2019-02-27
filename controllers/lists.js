@@ -11,6 +11,7 @@ module.exports = function(app) {
   // SHOW a single list
   // CK: For now, we will have only SHOW, not INDEX. Current aim: User can add favorite items to an existing, fixed (provided) list. **A good goal for the future** is to allow users to create and delete lists, too; however, simplifying for now will allow us to reach full essential functionality more efficiently.
   app.get('/lists/:id', function(req, res) {
+    // CK: A BUTTON will lead here.
     // CK: Add the following commented-out lines once auth is set up UNLESS IT PROVES UNNECESSARY
     // CK: (contd.) i.e. the app.use() jwt stuff proves to be enough
     // var currentUser = req.user;
