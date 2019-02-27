@@ -1,9 +1,59 @@
+@keyframes panning {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 30% 30%;
+  }
+   50% {
+    background-position: 30% 0%;
+  }
+  75% {
+    background-position: 0 30%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+
+/* @keyframes panning {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 100%;
+  }
+   50% {
+    background-position: 100% 0%;
+  }
+  75% {
+    background-position: 0 100%;
+  }
+  200% {
+    background-position: 0 0;
+  }
+} */
+
 .navbar-navbar-default{
-    background-color: #5CCAF1;
+    padding: 5%;
+      /* padding-bottom: 10%; */
+    /* opacity: .5;
+    background-color: #5CCAF1; */
 }
 
 body{
-    background-color: #5CCAF1;
+    /* height: 100%;
+    width: 100%;
+    min-height: 600px;
+    min-width: 800px; */
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url('https://images.pexels.com/photos/392586/pexels-photo-392586.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    /* background-color: #5CCAF1; */
+    background-size: 300%;
+    animation: panning 300s infinite linear;
 }
 
 .lead{
@@ -22,30 +72,127 @@ body{
     /* align-items: center; */
     /* justify-content: space-around; */
     /* width: 50vw; */
-
-  width: 90%;
+        /* opacity: .8; */
+background: transparent;
+    margin: auto;
+    /* width: 50%; */
+    padding: 10px;
+  width: 95%;
   padding-bottom: 10%;
-
 }
+
+/* .jumbotron:hover{
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    /* width: 50vw; */
+    /* opacity: 1;
+
+    margin: auto; */
+    /* width: 50%; */
+    /* padding: 10px;
+  width: 95%;
+  padding-bottom: 10%; */
+
+
+/*
+} */
 
 
 .landing{
+    padding-top: 10%;
     display: flex;
     align-items: center;
+    /* justify-content: center; */
     justify-content: space-around;
+    flex-flow: row wrap;
 /*
     height: 50px;
     width: 50%; */
 }
 
 button{
-    /* font-size: 23px; */
-    font-size: 2vw;
+    /* align-self: center;
+    text-align: center;
+    font-size: 23px; */
+    /* font-size: 2vw; */
+    /* height: 10vw; */
+    /* width: 20vw; */
+    /* width: 60%;
+    padding-top: 10%; */
+    /* width: 150px;
+    height: 150px;
+    border-radius: 12px; */
+    min-width: 150px;
+    /* color: white; */
+
+}
+
+/* button style generated with the help of: */
+/* https://www.bestcssbuttongenerator.com/#/28 */
+
+button {
+
+	-moz-box-shadow:inset 0px 1px 6px 1px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 6px 1px #ffffff;
+	box-shadow:inset 0px 1px 6px 1px #ffffff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+	background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+	background-color:#f9f9f9;
+	-moz-border-radius:11px;
+	-webkit-border-radius:11px;
+	border-radius:11px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:23px 9px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+    align-self: center;
+    text-align: center;
+}
+
+button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+	background-color:#e9e9e9;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+.btn{
+    /* background: transparent; */
+    align-self: center;
+    text-align: center;
+    font-size: 23px;
+    /* font-size: 2vw;
     height: 10vw;
-    width: 20vw;
-    max-width: 150px;
+    width: 20vw; */
+    /* width: 60%;
+    padding-top: 10%; */
     /* min-width: 50px; */
 }
+
+/* .btn_angry{
+    border: 2px solid #f44336;
+    background-color: #f44336;
+} */
 
 .one-tagged-mood {
   border: 2px solid;
