@@ -9,7 +9,8 @@ module.exports = function(app) {
 
     //ROOT ROUTE
     //https://stackoverflow.com/questions/39277670/how-to-find-random-record-in-mongoose
-    app.get('/', (req, res) => {
+    app.get('/', function(req, res) {
+      var currentUser = req.user;
       Resource.count().exec(function (err, count) {
         // "Get a random entry"
         var random = Math.floor(Math.random() * count)
@@ -18,7 +19,7 @@ module.exports = function(app) {
           function (err, result) {
            // "Tada! random user"
             console.log(result)
-            res.render('landing', { resource: result });
+            res.render('landing', { resource: result, currentUser});
         });
       });
     });

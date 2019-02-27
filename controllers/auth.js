@@ -1,5 +1,3 @@
-// CK: Yo me. Add a login route
-
 const List = require('../models/list');
 const Resource = require('../models/resource');
 const User = require('../models/user');

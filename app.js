@@ -65,25 +65,3 @@ module.exports = app;
 //   storageBucket: '<your-storage-bucket>',
 //   messagingSenderId: '<your-sender-id>'
 // });
-
-
-// CK: gonna toss this out, trying other auth
-// // CK: This works. I am booted when I attempt to access pages that we've told the program I shouldn't be able to access without being auth'd. So, yay!
-// // CK: I have NOT YET CHECKED to see if it works for authenticated users
-// app.use(
-//   jwt({
-//     secret: "shhhhhhared-secret",
-//     getToken: function fromHeaderOrCookie(req) {
-//       //fromHeaderOrQuerystring
-//       if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
-//         return req.headers.authorization.split(" ")[1];
-//       } else if (req.cookies && req.cookies.token) {
-//         return req.cookies.token;
-//       }
-//       return null;
-//     }
-//   }).unless({path: ["/", "/login", "/sign-up", "/lists-edit", "/lists-show", "/resources/:id/edit", "/resources/new", "/resources", "/resources/:id", "/index", "/angry", "/bored", "/frustrated", "/lonely", "/sad"] }) // CK: Don't need to be auth'd (aka all that stuff inside "app.use(jwt({}))") to go to these pages
-//   // CK: Originally included only paths: "/", "/login", "/sign-up". I have added everything for now just to allow myself to easily see what routes are working, etc., without having to authorize myself first. Smol time saver
-//   // CK: Once a lot of stuff has been added, PUT IT BACK TO JUST THE SELECT FEW PATHS THAT WERE THERE BEFORE. Possibly keep the moods in there?
-//   // CK: Need to sign up / log in to save to the one solitary lonely list
-// );

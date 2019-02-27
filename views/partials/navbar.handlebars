@@ -1,22 +1,30 @@
-{{!-- CK: ADD LOGIN BUTTON (and route in auth.js obviously) --}}
-
 <nav class="navbar-navbar-default">
   <div class="container-fluid">
+
+    {{!-- Logo --}}
     <div class="navbar-header">
-      <!-- <a class="navbar-brand" href="/">
-        Big Mood
-      </a> -->
       <a href="/">
-      {{!-- CK: I am commenting these out FOR NOW because they won't render on my machine. --}}
-      {{!-- <img src="logo.png">
-      <img src="justLogog.png"> --}}
-      <img class="logo" src="images/justLogog.png">
+        <img class="logo" src="images/justLogog.png">
       </a>
     </div>
+
+    {{!-- Submit new content... if logged in --}}
     <div class="pull-right">
-      <a href="/sign-up" class="btn btn-default navbar-btn">Sign-up</a>
-      <!-- <a href="/resources/new" class="btn btn-default navbar-btn">Create content</a> -->
-      <!-- <a href="/index"><font size=1 color="black">admin</font></a> -->
+      {{#if currentUser}}
+        <a href="/resources/new" class="btn btn-default navbar-btn">Submit Content</a>
+      {{/if}}
     </div>
+
+    {{!-- Auth buttons --}}
+    <div class="nav navbar-nav navbar-right">
+      {{#if currentUser}}
+        <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
+        <a href="/index"><font size=1 color="black">admin</font></a>
+      {{else}}
+        <a href="/login" class="btn btn-default navbar-btn">Log In</a>
+        <a href="/sign-up" class="btn btn-default navbar-btn">Sign Up</a>
+      {{/if}}
+    </div>
+
   </div>
 </nav>
