@@ -1,10 +1,11 @@
-<h1>Resources Index</h1>
-
-<div class="row">
-  {{#each resources}}
-    <div class="col-sm-3">
-      <h2><a href="/resources/{{this._id}}">{{this.resource}}</a></h2>
-      <small>{{this.link}}</small>
+<div class='row'>
+    <div class-'col-sm-6 col-sm-offset-3'>
+        <legend>For when you're feeling "{{mood}}"</legend>
+        {{#each resources}}
+        <div class='one-singular-recommended-resource'>
+            <h2><a href='/moods/{{this._id}}'>{{this.resource}}</a></h2>
+            <p><b>URL: </b>{{this.link}}</p>
+        </div>
+        {{/each}}
     </div>
-  {{/each}}
 </div>

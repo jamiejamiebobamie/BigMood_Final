@@ -30,8 +30,14 @@ module.exports = function(app) {
     });
 
     app.get('/moods/:mood', function(req, res) {
-        res.render('mood-resource-index', {})
-    });
+        Resource.find({moods: {$all:
+        [req.params.tag]}}).then(function(resources) {
+            console.log(resources)
+            res.render('mood-resource-index', {
+                resources:resources, mood:
+                req.params.mood});
+            }).catch(err => console.log(err));
+        })
 
 
     // CREATE NEW resource

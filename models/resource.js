@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const ResourceSchema = new Schema({
-    resource: {type: String, required: true},
+    resource: {type: String, required: true}, // BB: This is the title
     link: {type: String, required: false}, // JM: outdated version(pre-user version). CK: not required b/c some resources, like action items, won't have a link
     user: {type: String, required: false},
     time: {type: String, required: false},
