@@ -29,6 +29,11 @@ module.exports = function(app) {
       res.render('resources-new', {});
     });
 
+    app.get('/moods/:mood', function(req, res) {
+        res.render('mood-resource-index', {})
+    });
+
+
     // CREATE NEW resource
     app.post('/resources', function(req, res) {
       Resource.create(req.body).then(function(resource) {
