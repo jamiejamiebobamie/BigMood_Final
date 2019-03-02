@@ -8,18 +8,15 @@
       </a>
     </div>
 
-    {{!-- Submit new content... if logged in --}}
-    <div class="pull-right">
-      {{#if currentUser}}
-        <a href="/resources/new" class="btn btn-default navbar-btn">Submit Content</a>
-      {{/if}}
-    </div>
-
     {{!-- Auth buttons --}}
     <div class="nav navbar-nav navbar-right">
       {{#if currentUser}}
+        <a href="/resources/new" class="btn btn-default navbar-btn">Submit Content</a>
+        <a href="/likedContent" class="btn btn-default navbar-btn">My Content</a>
+        <a href="/index" class="btn btn-default navbar-btn">Admin</a>
         <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
-        <a href="/index"><font size=1 color="black">admin</font></a>
+        <!-- <a href="/index"><font size=1 color="black">admin</font></a>
+        <a href="/index"><font size=1 color="black">admin</font></a> -->
       {{else}}
         <a href="/login" class="btn btn-default navbar-btn">Log In</a>
         <a href="/sign-up" class="btn btn-default navbar-btn">Sign Up</a>
