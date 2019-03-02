@@ -6,13 +6,14 @@
             <!-- TITLE -->
             <div class="form-group">
                 <label for="list-title">Title</label><br>
-                <input class="form-control" id="list-title" type="text" name="title" value="{{list.title}}"/>
+                <input class="form-control" id="list-title" type="text" name="title" value="{{list.title}}" />
             </div>
 
             <!-- DESCRIPTION -->
             <div class="form-group">
                 <label for="list-description">Description</label></br>
-                <textarea class="form-control" id="list-description" name="description" rows="7" />{{list.description}}</textarea>
+                <textarea class="form-control" id="list-description" name="description"
+                    rows="7" />{{list.description}}</textarea>
             </div>
 
             {{!-- CK: We do not have a place here for resources, because the user does not directly input them via form. --}}

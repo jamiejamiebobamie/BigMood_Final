@@ -3,19 +3,20 @@
     <h1>{{list.title}}</h1>
     <h3>{{list.description}}</h3>
 
-    <br><h3>Saved Items</h3><br>
+    <br>
+    <h3>Saved Items</h3><br>
     {{#if this.list}}
     {{#each list.resources}}
-      <div class="card col-xs-12 items-indent">
-        <p>{{this.resource}}</p>
-        <p>{{this.link}}</p>
-        {{!-- CK: I'm trying using "#each this.mood" now, but if it doesn't work, I will try #each resource.mood" --}}
-        {{!-- CK: Side note! Also, I will add an INDEX route for all the suggested media of a specific mood, like seeing all the posts with a certain tag on a forum. --}}
-        <p><b>Mood: </b>{{#each this.mood}}
-          <a href="/mood/{{this}}"><i>{{this}}...</i>
+    <div class="card col-xs-12 items-indent">
+      <p>{{this.resource}}</p>
+      <p>{{this.link}}</p>
+      {{!-- CK: I'm trying using "#each this.mood" now, but if it doesn't work, I will try #each resource.mood" --}}
+      {{!-- CK: Side note! Also, I will add an INDEX route for all the suggested media of a specific mood, like seeing all the posts with a certain tag on a forum. --}}
+      <p><b>Mood: </b>{{#each this.mood}}
+        <a href="/mood/{{this}}"><i>{{this}}...</i>
           {{/each}}</a>
-        </p>
-      </div>
+      </p>
+    </div>
     {{/each}}
     {{/if}}
 

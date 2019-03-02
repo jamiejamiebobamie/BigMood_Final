@@ -10,8 +10,12 @@
 
 
 <div>
-     <span style="float:right"><p><a href="/resources/{{resource._id}}/edit">Edit</a></p>
-     <p><form method="POST" action="/resources/{{resource._id}}?_method=DELETE">
-         <button class="btn btn-primary" type="submit">Delete</button>
-     </form></p></span>
-   </div>
+  <span style="float:right">
+    <p><a href="/resources/{{resource._id}}/edit">Edit</a></p>
+    <p>
+      <form method="POST" action="/resources/{{resource._id}}?_method=DELETE">
+        <button class="btn btn-primary" type="submit">Delete</button>
+      </form>
+    </p>
+  </span>
+</div>

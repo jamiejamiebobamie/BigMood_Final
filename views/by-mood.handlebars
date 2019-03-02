@@ -3,11 +3,11 @@
     <h1>Content tagged <b><i>"{{mood}}"</i></b></h1>
     <br>
     {{#each resources}}
-      <div class="one-tagged-resource">
-        <a href="/entries/{{this._id}}">{{this.resource}}</a>
-        <p><b>Link: </b>{{this.link}}</p>
-        <p><b>Mood: </b><i>{{this.moods}} </i></p>
-      </div>
+    <div class="one-tagged-resource">
+      <a href="/entries/{{this._id}}">{{this.resource}}</a>
+      <p><b>Link: </b>{{this.link}}</p>
+      <p><b>Mood: </b><i>{{this.moods}} </i></p>
+    </div>
     {{/each}}
   </div>
 </div>
