@@ -41,10 +41,10 @@ body{
         or you will get a wallpaper like effect
         of the image repeating itself.
     */
-    background-size: 300%;
+    background-size: 100%;
 
     /* lower the panning second to increase the speed of the pan */
-    animation: panning 300s infinite linear;
+    /* animation: panning 300s infinite linear; */
 }
 
 .logo{
