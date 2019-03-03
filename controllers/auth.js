@@ -111,8 +111,8 @@ app.post("/user/:id/resources/:resourceId", function (req, res) {
                 // this works sometimes. it seems to be something with asynchronicity of
                 // node callbacks (?). we need a promise or something
                 console.log("username: " + user.username)
-                // user.likedContent.unshift(resource);
-                // console.log(user.likedContent.length);
+                user.likedContent.unshift(resource);
+                console.log("added resource: " + user.likedContent[0]);
                 // res.redirect(`/user/${currentUser.id}`)
                 // return Promise.all([
                 //     user.save()
