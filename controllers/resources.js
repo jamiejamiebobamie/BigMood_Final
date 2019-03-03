@@ -26,8 +26,11 @@ module.exports = function(app) {
 
     // NEW resource form
     app.get('/resources/new', function(req, res) {
-      res.render('resources-new', {});
+        var currentUser = req.user;
+        console.log(currentUser)
+      res.render('resources-new', { resource: currentUser});
     });
+
 
     // CREATE NEW resource
     app.post('/resources', function(req, res) {
@@ -86,14 +89,16 @@ module.exports = function(app) {
 
       //admin see all to edit
       app.get('/index', function(req, res) {
+          var currentUser = req.user;
           Resource.find()
              .then(function(resources) {
-               res.render('resources-index', { resources: resources });
+               res.render('resources-index', { resource: resources, currentUser});
              })
              .catch(function(err) {
                console.log(err);
              })
       });
+
 
     // EDIT a resource by clicking on the edit link in the shown resource
     // CK: EDIT yields the FORM to make changes to an existing item

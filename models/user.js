@@ -9,7 +9,8 @@ const Schema = mongoose.Schema;
    updatedAt: { type: Date },
    username: { type: String, required: true, unique: true },
    password: { type: String, required: true },
-
+   likedContent: { type: Array, required: false },
+   admin : { type: Boolean, required: true }
  });
 
  // Apply the uniqueValidator plugin to userSchema.
