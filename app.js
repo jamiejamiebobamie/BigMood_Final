@@ -24,7 +24,7 @@ const checkAuth = (function(req, res, next) {
 require('dotenv').config();
 
 // database
-require('./database/bmdb');
+const db = require('./database/bmdb');
 
 // reducing deprecation warnings
 mongoose.set('useFindAndModify', false) // CK: because of all the deprecation warnings when using findByIdAndUpdate. This is supposed to silence that. https://github.com/Automattic/mongoose/issues/6880
@@ -47,10 +47,102 @@ require('./controllers/auth.js')(app);
 require('./controllers/lists.js')(app);
 require('./controllers/resources.js')(app);
 
+const User = require('./models/user');
+const List = require('./models/list');
+const Resource = require('./models/resource');
+
 // ring ring... anyone there?
 app.listen(port, () => {
   console.log('App listening on port ' + port + '!');
 });
+
+
+
+app.get('/angry', (req, res) => {
+    var currentUser = req.user;
+    Resource.count({ mood: 'Angry'}).exec(function (err, count) {
+      // "Get a random entry"
+      var random = Math.floor(Math.random() * count)
+      // "Again query all users but only fetch one offset by our random #""
+      Resource.findOne({ mood: 'Angry'}).skip(random).exec(
+        function (err, result) {
+          // "Tada! random user"
+          console.log(result)
+          res.render('moods_home/angry', { resource: result, currentUser });
+        })
+    })
+});
+
+app.post('/:resourceId', (req, res) => {
+    var currentUser = req.user;
+    const save = req.originalUrl
+    const saved = save.substring(1)
+    console.log(db)
+    // const save = window.location.href
+    // const save = document.URL;
+    // const save = req.resource._id
+    // console.log(save)
+    db.currentUser.update( null, { $push: { likedContent: saved } })
+    res.render('moods_home/angry', { resource: currentUser });
+});
+
+app.get('/bored', (req, res) => {
+    Resource.count({ hashtag: 'MOOD: Bored' }).exec(function (err, count) {
+      // "Get a random entry"
+      var random = Math.floor(Math.random() * count)
+      // "Again query all users but only fetch one offset by our random #""
+      Resource.findOne({ hashtag: 'MOOD: Bored' }).skip(random).exec(
+        function (err, result) {
+          // "Tada! random user"
+          console.log(result)
+          res.render('moods_home/bored', { resource: result });
+        })
+    })
+});
+
+app.get('/frustrated', (req, res) => {
+    Resource.count({ hashtag: 'MOOD: Frustrated' }).exec(function (err, count) {
+      // "Get a random entry"
+      var random = Math.floor(Math.random() * count)
+      // "Again query all users but only fetch one offset by our random #""
+      Resource.findOne({ hashtag: 'MOOD: Frustrated' }).skip(random).exec(
+        function (err, result) {
+          // "Tada! random user"
+          console.log(result)
+          res.render('moods_home/frustrated', { resource: result });
+        })
+    })
+});
+
+app.get('/lonely', (req, res) => {
+    Resource.count({ hashtag: 'MOOD: Lonely' }).exec(function (err, count) {
+      // "Get a random entry"
+      var random = Math.floor(Math.random() * count)
+      // "Again query all users but only fetch one offset by our random #""
+      Resource.findOne({ hashtag: 'MOOD: Lonely' }).skip(random).exec(
+        function (err, result) {
+          // "Tada! random user"
+          console.log(result)
+          res.render('moods_home/lonely', { resource: result });
+        })
+    })
+});
+
+app.get('/sad', (req, res) => {
+    Resource.count({ hashtag: 'MOOD: Sad' }).exec(function (err, count) {
+      // "Get a random entry"
+      var random = Math.floor(Math.random() * count)
+      // "Again query all users but only fetch one offset by our random #""
+      Resource.findOne({ hashtag: 'MOOD: Sad' }).skip(random).exec(
+        function (err, result) {
+          // "Tada! random user"
+          console.log(result)
+          res.render('moods_home/sad', { resource: result });
+        })
+    })
+});
+
+
 
 module.exports = app;
 

@@ -47,6 +47,26 @@ body{
     /* animation: panning 300s infinite linear; */
 }
 
+p{
+    color: white;
+}
+
+h1{
+    color: white;
+}
+
+h3{
+    color: white;
+}
+
+/* center{
+    color: white;
+}
+
+a{
+    color: white;
+} */
+
 .logo{
     max-width: 99%;
     max-height: 99%;
