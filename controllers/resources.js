@@ -33,19 +33,19 @@ module.exports = function (app) {
   });
 
   app.get('/moods/:mood', function (req, res) {
-      Resource.find({
-          moods: {
-              $all: [req.params.mood]
-          }
-      }).then(function(resources) {
-          console.log(resources)
-          res.render('mood-resource-index', {
-              resources: resources,
-              mood: req.params.mood
-          });
-      }).catch(function(err) {
-          console.log(err.message);
+    Resource.find({
+      moods: {
+        $all: [req.params.mood]
+      }
+    }).then(function (resources) {
+      console.log(resources)
+      res.render('mood-resource-index', {
+        resources: resources,
+        mood: req.params.mood
       });
+    }).catch(function (err) {
+      console.log(err.message);
+    });
   });
 
 
