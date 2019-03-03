@@ -27,25 +27,23 @@ module.exports = function (app) {
     });
   });
 
-    // NEW resource form
-    app.get('/resources/new', function(req, res) {
-        var currentUser = req.user;
-        console.log(currentUser)
-      res.render('resources-new', { resource: currentUser});
+  // NEW resource form
+  app.get('/resources/new', function (req, res) {
+    var currentUser = req.user;
+    console.log(currentUser)
+    res.render('resources-new', {
+      resource: currentUser
     });
+  });
 
-
-    // CREATE NEW resource
-    app.post('/resources', function(req, res) {
-      Resource.create(req.body).then(function(resource) {
-        parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
-        resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
-        console.log(resource);
-        resource.save();
-        res.redirect(`/`);
-      }).catch(function(err) {
-        console.log(err.message);
-      });
+  // CREATE NEW resource
+  app.post('/resources', function (req, res) {
+    Resource.create(req.body).then(function (resource) {
+      parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
+      resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
+      console.log(resource);
+      resource.save();
+      res.redirect(`/`);
     }).catch(function (err) {
       console.log(err.message);
     });
@@ -68,18 +66,18 @@ module.exports = function (app) {
   });
 
 
-//   // CREATE NEW resource // CK: No longer using arrays for 'mood'
-//   app.post('/resources', function (req, res) {
-//     Resource.create(req.body).then(function (resource) {
-//       parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
-//       resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
-//       console.log(resource);
-//       resource.save();
-//       res.redirect(`/`);
-//     }).catch(function (err) {
-//       console.log(err.message);
-//     });
-//   });
+  //   // CREATE NEW resource // CK: No longer using arrays for 'mood'
+  //   app.post('/resources', function (req, res) {
+  //     Resource.create(req.body).then(function (resource) {
+  //       parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
+  //       resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
+  //       console.log(resource);
+  //       resource.save();
+  //       res.redirect(`/`);
+  //     }).catch(function (err) {
+  //       console.log(err.message);
+  //     });
+  //   });
 
   // // Index/Read for a SPECIFIC mood
   // app.get('/moods/:mood', (req, res) => {
@@ -104,23 +102,20 @@ module.exports = function (app) {
   //   });
   // });
 
-
-
-
-
-
-
   // ---------- ADMIN FEATURES BELOW ------------
 
 
   // SHOW A single resource for ADMIN USE ONLY
   app.get('/resources/:id', function (req, res) {
     // find resource
-    Resource.findById(req.params.id).then(function(resource) {
-        res.render('resources-show-admin', { resource: resource})})
-        .catch(function(err) {
-      console.log(err.message)
-    });
+    Resource.findById(req.params.id).then(function (resource) {
+        res.render('resources-show-admin', {
+          resource: resource
+        })
+      })
+      .catch(function (err) {
+        console.log(err.message)
+      });
   });
 
   //admin see all to edit
@@ -168,5 +163,4 @@ module.exports = function (app) {
       console.log(err.message);
     })
   });
-
 };
