@@ -58,7 +58,7 @@ app.listen(port, () => {
 
 
 
-app.get('/moods_home/angry', (req, res) => {
+app.get('/angry', (req, res) => {
     var currentUser = req.user;
     Resource.count({ mood: 'Angry'}).exec(function (err, count) {
       // "Get a random entry"
@@ -68,7 +68,7 @@ app.get('/moods_home/angry', (req, res) => {
         function (err, result) {
           // "Tada! random user"
           console.log(result)
-          res.render('moods_home/angry', { resource: result, currentUser });
+          res.render('angry', { resource: result, currentUser });
         })
     })
 });
@@ -86,61 +86,61 @@ app.post('/:resourceId', (req, res) => {
     res.render('moods_home/angry', { resource: currentUser });
 });
 
-app.get('/bored', (req, res) => {
-    Resource.count({ hashtag: 'MOOD: Bored' }).exec(function (err, count) {
-      // "Get a random entry"
-      var random = Math.floor(Math.random() * count)
-      // "Again query all users but only fetch one offset by our random #""
-      Resource.findOne({ hashtag: 'MOOD: Bored' }).skip(random).exec(
-        function (err, result) {
-          // "Tada! random user"
-          console.log(result)
-          res.render('moods_home/bored', { resource: result });
-        })
-    })
-});
-
-app.get('/frustrated', (req, res) => {
-    Resource.count({ hashtag: 'MOOD: Frustrated' }).exec(function (err, count) {
-      // "Get a random entry"
-      var random = Math.floor(Math.random() * count)
-      // "Again query all users but only fetch one offset by our random #""
-      Resource.findOne({ hashtag: 'MOOD: Frustrated' }).skip(random).exec(
-        function (err, result) {
-          // "Tada! random user"
-          console.log(result)
-          res.render('moods_home/frustrated', { resource: result });
-        })
-    })
-});
-
-app.get('/lonely', (req, res) => {
-    Resource.count({ hashtag: 'MOOD: Lonely' }).exec(function (err, count) {
-      // "Get a random entry"
-      var random = Math.floor(Math.random() * count)
-      // "Again query all users but only fetch one offset by our random #""
-      Resource.findOne({ hashtag: 'MOOD: Lonely' }).skip(random).exec(
-        function (err, result) {
-          // "Tada! random user"
-          console.log(result)
-          res.render('moods_home/lonely', { resource: result });
-        })
-    })
-});
-
-app.get('/sad', (req, res) => {
-    Resource.count({ hashtag: 'MOOD: Sad' }).exec(function (err, count) {
-      // "Get a random entry"
-      var random = Math.floor(Math.random() * count)
-      // "Again query all users but only fetch one offset by our random #""
-      Resource.findOne({ hashtag: 'MOOD: Sad' }).skip(random).exec(
-        function (err, result) {
-          // "Tada! random user"
-          console.log(result)
-          res.render('moods_home/sad', { resource: result });
-        })
-    })
-});
+// app.get('/bored', (req, res) => {
+//     Resource.count({ hashtag: 'MOOD: Bored' }).exec(function (err, count) {
+//       // "Get a random entry"
+//       var random = Math.floor(Math.random() * count)
+//       // "Again query all users but only fetch one offset by our random #""
+//       Resource.findOne({ hashtag: 'MOOD: Bored' }).skip(random).exec(
+//         function (err, result) {
+//           // "Tada! random user"
+//           console.log(result)
+//           res.render('moods_home/bored', { resource: result });
+//         })
+//     })
+// });
+//
+// app.get('/frustrated', (req, res) => {
+//     Resource.count({ hashtag: 'MOOD: Frustrated' }).exec(function (err, count) {
+//       // "Get a random entry"
+//       var random = Math.floor(Math.random() * count)
+//       // "Again query all users but only fetch one offset by our random #""
+//       Resource.findOne({ hashtag: 'MOOD: Frustrated' }).skip(random).exec(
+//         function (err, result) {
+//           // "Tada! random user"
+//           console.log(result)
+//           res.render('moods_home/frustrated', { resource: result });
+//         })
+//     })
+// });
+//
+// app.get('/lonely', (req, res) => {
+//     Resource.count({ hashtag: 'MOOD: Lonely' }).exec(function (err, count) {
+//       // "Get a random entry"
+//       var random = Math.floor(Math.random() * count)
+//       // "Again query all users but only fetch one offset by our random #""
+//       Resource.findOne({ hashtag: 'MOOD: Lonely' }).skip(random).exec(
+//         function (err, result) {
+//           // "Tada! random user"
+//           console.log(result)
+//           res.render('moods_home/lonely', { resource: result });
+//         })
+//     })
+// });
+//
+// app.get('/sad', (req, res) => {
+//     Resource.count({ hashtag: 'MOOD: Sad' }).exec(function (err, count) {
+//       // "Get a random entry"
+//       var random = Math.floor(Math.random() * count)
+//       // "Again query all users but only fetch one offset by our random #""
+//       Resource.findOne({ hashtag: 'MOOD: Sad' }).skip(random).exec(
+//         function (err, result) {
+//           // "Tada! random user"
+//           console.log(result)
+//           res.render('moods_home/sad', { resource: result });
+//         })
+//     })
+// });
 
 
 

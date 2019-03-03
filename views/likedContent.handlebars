@@ -1,10 +1,19 @@
 <h1>Liked Content</h1>
 
+<h2>Welcome, {{currentUser.username}}!</h2>
+
+<!-- {{currentUser.likedContent}} -->
+
 <div class="row">
-  {{#each resources}}
-    <div class="col-sm-3">
-      <h2><a href="/resources/{{this._id}}">{{this.resource}}</a></h2>
-      <small>{{this.link}}</small>
-    </div>
+  <!-- <div class="col-sm-6 col-sm-offset-3">
+     {{user.username}}
+  </div> -->
+
+  {{#each currentUser.likedContent}}
+        {{resource.resource}}
+        {{resource.link}}
+        {{resource.time}}
+        {{resource.mood}}
   {{/each}}
+
 </div>
