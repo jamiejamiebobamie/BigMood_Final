@@ -48,22 +48,22 @@ module.exports = function (app) {
       console.log(err.message);
     });
   });
-
-  app.get('/moods/:mood', function (req, res) {
-    Resource.find({
-      moods: {
-        $all: [req.params.mood]
-      }
-    }).then(function (resources) {
-      console.log(resources)
-      res.render('mood-resource-index', {
-        resources: resources,
-        mood: req.params.mood
-      });
-    }).catch(function (err) {
-      console.log(err.message);
-    });
-  });
+  // 
+  // app.get('/moods/:mood', function (req, res) {
+  //   Resource.find({
+  //     moods: {
+  //       $all: [req.params.mood]
+  //     }
+  //   }).then(function (resources) {
+  //     console.log(resources)
+  //     res.render('mood-resource-index', {
+  //       resources: resources,
+  //       mood: req.params.mood
+  //     });
+  //   }).catch(function (err) {
+  //     console.log(err.message);
+  //   });
+  // });
 
 
   //   // CREATE NEW resource // CK: No longer using arrays for 'mood'

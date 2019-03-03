@@ -58,7 +58,7 @@ app.listen(port, () => {
 
 
 
-app.get('/angry', (req, res) => {
+app.get('/moods_home/angry', (req, res) => {
     var currentUser = req.user;
     Resource.count({ mood: 'Angry'}).exec(function (err, count) {
       // "Get a random entry"
