@@ -4,9 +4,10 @@ assert = require("assert");
 const url = "mongodb://localhost/bmdb";
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  "mongodb://localhost/bmdb",
-  { useNewUrlParser: true },
-  function(err, db) {
+  "mongodb://localhost/bmdb", {
+    useNewUrlParser: true
+  },
+  function (err, db) {
     assert.equal(null, err);
     console.log("Connected successfully to database");
 
