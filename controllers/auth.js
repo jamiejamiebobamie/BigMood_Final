@@ -82,52 +82,51 @@ module.exports = function (app) {
     res.redirect('/');
   });
 
-// SHOW LIKED RESOURCES
-app.get("/user/:id", function (req, res) {
-    var currentUser = req.user;
-    User.findById(req.params.id).populate('resources').lean()
-        .then(currentUser => {
-            res.render("likedContent", { currentUser });
-        })
-        .catch(err => {
-            console.log(err.message);
-        });
-});
-
-// SAVE resource
-// copied from the reddit tutorial
-// post == user
-// comments == resources
-// this is in the post controller when you're saving comments to posts in the reddit tutorial.
-app.post("/user/:id/resources/:resourceId", function (req, res) {
-    const currentUser = req.user;
-    const save = req.params.resourceId;
-    // console.log(currentUser, req.user._id, req.params.resourceId);
-    Resource.findById(save)
-            .then((resource) => {
-                // console.log(resource);
-                User.findById(currentUser)
-                .then((user) => {
-                // this works sometimes. it seems to be something with asynchronicity of
-                // node callbacks (?). we need a promise or something
-                console.log("username: " + user.username)
-                user.likedContent.unshift(resource);
-                console.log("added resource: " + user.likedContent[0]);
-                // res.redirect(`/user/${currentUser.id}`)
-                // return Promise.all([
-                //     user.save()
-                // ]);
-                res.redirect(`/user/${req.params.userId}`);
-            })
-            })
-            // .then(user => {
-            //     res.redirect(`/user/${req.params.userId}`);
-            // })
-            .catch(err => {
-                console.log(err);
-            });
-
-
-    });
-
 };
+
+// // CK: With the approach I'm taking to try to solve this, showing liked resources isn't needed because one of the properties of our List model is "resources".
+// // SHOW LIKED RESOURCES
+// app.get("/user/:id", function (req, res) {
+//   var currentUser = req.user;
+//   User.findById(req.params.id).populate('resources').lean()
+//     .then(currentUser => {
+//       res.render("likedContent", {
+//         currentUser
+//       });
+//     })
+//     .catch(err => {
+//       console.log(err.message);
+//     });
+// });
+
+// // CK: Migrated to ./controllers/clones.js
+// // SAVE resource
+// app.post('/user/:id/resources/:resourceId', function (req, res) {
+//   const currentUser = req.user;
+//   const save = req.params.resourceId;
+//   // console.log(currentUser, req.user._id, req.params.resourceId);
+//   Resource.findById(save)
+//     .then((resource) => {
+//       // console.log(resource);
+//       User.findById(currentUser)
+//         .then((user) => {
+//           // this works sometimes. it seems to be something with asynchronicity of
+//           // node callbacks (?). we need a promise or something
+//           console.log("username: " + user.username)
+//           user.likedContent.unshift(resource);
+//           console.log("added resource: " + user.likedContent[0]);
+//           // res.redirect(`/user/${currentUser.id}`)
+//           // return Promise.all([
+//           //     user.save()
+//           // ]);
+//           res.redirect(`/user/${req.params.userId}`);
+//         })
+//     })
+//     // .then(user => {
+//     //     res.redirect(`/user/${req.params.userId}`);
+//     // })
+//     .catch(err => {
+//       console.log(err);
+//     });
+
+// });
