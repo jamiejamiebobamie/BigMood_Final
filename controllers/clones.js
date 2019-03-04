@@ -6,8 +6,6 @@
 
 const Resource = require('../models/resource');
 const List = require('../models/list');
-const clone = new Resource(req.body); // CK: saying the clone is a Resource object
-
 
 module.exports = function (app) {
 
@@ -17,6 +15,7 @@ module.exports = function (app) {
         let resource;
         let list;
         // CK: Shooting in the dark here. Trying to set the clone's properties to match the parent resource's properties
+        const clone = new Resource(req.body); // CK: saying the clone is a Resource object
         clone.resource = resource.resource;
         clone.link = resource.link;
         clone.user = resource.user;
