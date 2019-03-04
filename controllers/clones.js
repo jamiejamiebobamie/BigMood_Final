@@ -1,7 +1,5 @@
 // CK: I'm calling this file "clones" because it deals with duplicates, or "clones", that are created when the user saves a resource to their list of likes.
 
-// CK: To-Do: Reference TDD-BDD-testing where I hard-coded the cart for testing. Since we're hard-coding a list for them to use, I think we must hard-code the list here.
-
 // CK: To-Do: Only a user should be able to do this. Add that in later.
 
 const Resource = require('../models/resource');

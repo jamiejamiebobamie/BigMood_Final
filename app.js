@@ -66,50 +66,47 @@ app.listen(port, () => {
 });
 
 
-// START
+app.get('/angry', (req, res) => {
+  var currentUser = req.user;
+  Resource.count({
+    mood: 'Angry'
+  }).exec(function (err, count) {
+    // "Get a random entry"
+    var random = Math.floor(Math.random() * count)
+    // "Again query all users but only fetch one offset by our random #""
+    Resource.findOne({
+      mood: 'Angry'
+    }).skip(random).exec(
+      function (err, result) {
+        // "Tada! random user"
+        console.log(result)
+        res.render('angry', {
+          resource: result,
+          currentUser
+        });
+      })
+  })
+});
 
-// app.get('/angry', (req, res) => {
-//   var currentUser = req.user;
-//   Resource.count({
-//     mood: 'Angry'
-//   }).exec(function (err, count) {
-//     // "Get a random entry"
-//     var random = Math.floor(Math.random() * count)
-//     // "Again query all users but only fetch one offset by our random #""
-//     Resource.findOne({
-//       mood: 'Angry'
-//     }).skip(random).exec(
-//       function (err, result) {
-//         // "Tada! random user"
-//         console.log(result)
-//         res.render('angry', {
-//           resource: result,
-//           currentUser
-//         });
-//       })
-//   })
-// });
+app.post('/:resourceId', (req, res) => {
+  var currentUser = req.user;
+  const save = req.originalUrl
+  const saved = save.substring(1)
+  console.log(db)
+  // const save = window.location.href
+  // const save = document.URL;
+  // const save = req.resource._id
+  // console.log(save)
+  db.currentUser.update(null, {
+    $push: {
+      likedContent: saved
+    }
+  })
+  res.render('moods_home/angry', {
+    resource: currentUser
+  });
+});
 
-// app.post('/:resourceId', (req, res) => {
-//   var currentUser = req.user;
-//   const save = req.originalUrl
-//   const saved = save.substring(1)
-//   console.log(db)
-//   // const save = window.location.href
-//   // const save = document.URL;
-//   // const save = req.resource._id
-//   // console.log(save)
-//   db.currentUser.update(null, {
-//     $push: {
-//       likedContent: saved
-//     }
-//   })
-//   res.render('moods_home/angry', {
-//     resource: currentUser
-//   });
-// });
-
-// END
 
 
 
