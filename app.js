@@ -52,19 +52,12 @@ app.use(express.static('public')); // sample images from past projects for testi
 
 // REQUIRING CONTROLLERS
 require('./controllers/auth.js')(app);
-require('./controllers/lists.js')(app);
 require('./controllers/resources.js')(app);
-require('./controllers/clones.js')(app);
-
-const User = require('./models/user');
-const List = require('./models/list');
-const Resource = require('./models/resource');
 
 // ring ring... anyone there?
 app.listen(port, () => {
   console.log('App listening on port ' + port + '!');
 });
-
 
 app.get('/angry', (req, res) => {
   var currentUser = req.user;

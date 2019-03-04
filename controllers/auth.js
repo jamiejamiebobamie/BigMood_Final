@@ -1,4 +1,3 @@
-const List = require('../models/list');
 const Resource = require('../models/resource');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
@@ -84,7 +83,7 @@ module.exports = function (app) {
 
 };
 
-// // CK: With the approach I'm taking to try to solve this, showing liked resources isn't needed because one of the properties of our List model is "resources".
+// // CK: Not using. We'll be rendering all liked items from the User model
 // // SHOW LIKED RESOURCES
 // app.get("/user/:id", function (req, res) {
 //   var currentUser = req.user;

@@ -29,12 +29,13 @@ const ResourceSchema = new Schema({
     mood: {
         type: String,
         required: true
-    },
-    listId: {
-        type: Schema.Types.ObjectId,
-        ref: 'List',
-        required: false
-    } // CK: Copied/saved resources (i.e. Clones) on a List should be associated with that List. Not every Resource is going to be a deep copy, so not every Resource needs listId. That's why object listId is set to "required: false".
+    }
+    // CK: Aaaand not using this any more
+    // listId: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'List',
+    //     required: false
+    // } // CK: Copied/saved resources (i.e. Clones) on a List should be associated with that List. Not every Resource is going to be a deep copy, so not every Resource needs listId. That's why object listId is set to "required: false".
 
 });
 

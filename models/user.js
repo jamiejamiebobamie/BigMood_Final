@@ -23,7 +23,7 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Resource",
     required: false
-  }],
+  }], // CK: Will be adding the Resource ID to this list. THEN have that all render.. by REFERENCING THIS MODEL
   admin: {
     type: Boolean,
     required: true
