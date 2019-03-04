@@ -1,33 +1,40 @@
 // CK: I'm calling this file "clones" because it deals with duplicates, or "clones", that are created when the user saves a resource to their list of likes.
 
-// CK: To-Do: Only a user should be able to do this. Add that in later.
-
 const Resource = require('../models/resource');
 const List = require('../models/list');
+const User = require('../models/user');
 
 module.exports = function (app) {
 
     // HTTP Verb: CREATE!
     // This route saves resource to personal list
     app.post('/lists/:listId/saved', function (req, res) {
-        let resource;
-        let list;
-        // CK: Shooting in the dark here. Trying to set the clone's properties to match the parent resource's properties
-        const clone = new Resource(req.body); // CK: saying the clone is a Resource object
-        clone.resource = resource.resource;
-        clone.link = resource.link;
-        clone.user = resource.user;
-        clone.mood = resource.mood;
-        List.findById(req.params.listId) // CK: Find the list!
-            .then(function ([clone, list]) {
-                Promise.all([
-                    list.resources.unshift(clone._id), // CK: Now add the clone to the resources array of the List object
-                    list.save(), // CK: And save it
-                ])
-            }).then(function () {
-                res.redirect(`/lists/${req.params.listId}`); // CK: Now redirect to the list
-            }).catch(console.error);
-        return list.save();
+        if (req.user) {
+            if (req.resource & req.list) {
+                let resource;
+                let list;
+                // CK: Shooting in the dark here. Trying to set the clone's properties to match the parent resource's properties
+                const clone = new Resource(req.body); // CK: saying the clone is a Resource object
+                clone.resource = req.resource.resource;
+                clone.link = req.resource.link;
+                clone.user = req.resource.user;
+                clone.mood = req.resource.mood;
+                List.findById(req.params.listId) // CK: Find the list!
+                    .then(function ([clone, list]) {
+                        Promise.all([
+                            list.resources.unshift(clone._id), // CK: Now add the clone to the resources array of the List object
+                            list.save(), // CK: And save it
+                        ])
+                    }).then(function () {
+                        res.redirect(`/lists/${req.params.listId}`); // CK: Now redirect to the list
+                    }).catch(console.error);
+                return list.save();
+            } else {
+                return res.send('Ha no list u dummy'); // no list....
+            }
+        } else {
+            return res.status(401); // unauthorized
+        }
     });
 
 }

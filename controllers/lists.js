@@ -8,7 +8,7 @@ const User = require('../models/user');
 module.exports = function (app) {
 
   // SHOW a single list
-  // CK: For now, we will have only SHOW, not INDEX. Current aim: User can add favorite items to an existing, fixed (provided) list. **A good goal for the future** is to allow users to create and delete lists, too; however, simplifying for now will allow us to reach full essential functionality more efficiently.
+  // CK: Current aim: User can add favorite items to an existing, fixed (provided) list. **A good goal for the future** is to allow users to create and delete lists, too.
   app.get('/lists/:id', function (req, res) {
     // CK: A BUTTON will lead here.
     // var currentUser = req.user;
