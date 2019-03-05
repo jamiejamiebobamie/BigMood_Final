@@ -1,0 +1,26 @@
+
+
+{{#if currentUser}}
+
+<div class="jumbotron">
+  <p class="lead">{{resource.resource}}</p>
+  <p><a href="{{resource.user}}">{{resource.user}}</a></p>
+  <p>{{resource.mood}}</p>
+  <p class="lead">
+       <button><a href="/angry">Refresh</a></button>
+  </p>
+</div>
+
+
+<form action="/user/{{currentUser._id}}/resources/{{resource._id}}" method="post">
+<div class="text-right">
+  <button type="submit" class="btn btn-primary">Save</button>
+</div>
+</form>
+
+
+
+{{else}}
+<a href="/login" class="btn btn-default navbar-btn">Log In</a>
+<a href="/sign-up" class="btn btn-default navbar-btn">Sign Up</a>
+{{/if}}

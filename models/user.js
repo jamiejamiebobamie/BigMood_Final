@@ -2,19 +2,37 @@ const mongoose = require("mongoose");
 const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
+
 const UserSchema = new Schema({
-   createdAt: { type: Date },
-   updatedAt: { type: Date },
-   username: { type: String, required: true, unique: true },
-   password: { type: String, required: true },
-   likedContent: { type: Array, required: false },
-   admin : { type: Boolean, required: true }
+  createdAt: {
+    type: Date
+  },
+  updatedAt: {
+    type: Date
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  likedContent: [{
+    type: Schema.Types.ObjectId,
+    ref: "Resource"
+  }], // CK: Will be adding the Resource ID to this list. THEN have that all render.. by REFERENCING THIS MODEL
+  // admin: {
+  //   type: Boolean,
+  //   required: true
+  // }
 });
 
- // Apply the uniqueValidator plugin to userSchema.
+// Apply the uniqueValidator plugin to userSchema.
 UserSchema.plugin(uniqueValidator);
 
-UserSchema.pre("save", function(next) {
+UserSchema.pre("save", function (next) {
   // SET createdAt AND updatedAt
   const now = new Date();
   this.updatedAt = now;

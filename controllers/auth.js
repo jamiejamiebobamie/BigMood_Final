@@ -1,9 +1,8 @@
-const List = require('../models/list');
 const Resource = require('../models/resource');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-// var admin = require('../app');
+var admin = require('../app');
 
 module.exports = function (app) {
 
@@ -14,10 +13,11 @@ module.exports = function (app) {
 
   // CREATE user, i.e. user is signed up!
   app.post('/sign-up', function (req, res) {
+    console.log(req.body)
     const newUser = new User(req.body);
-    newUser.save().then((newUser) => {
+    newUser.save().then((user) => {
       var token = jwt.sign({
-        _id: newUser._id
+        _id: user._id
       }, process.env.SECRET, {
         expiresIn: "30 days"
       });
@@ -51,7 +51,7 @@ module.exports = function (app) {
       .then(function (newUser) {
         if (!newUser) {
           return res.status(401).send({
-            message: 'Invalid credentials'
+            message: 'Invalid credentials #1'
           });
         }
         newUser.comparePassword(password, function (err, isMatch) {
@@ -81,4 +81,52 @@ module.exports = function (app) {
     res.clearCookie('nToken');
     res.redirect('/');
   });
-}
+
+};
+
+// // CK: Not using. We'll be rendering all liked items from the User model
+// // SHOW LIKED RESOURCES
+// app.get("/user/:id", function (req, res) {
+//   var currentUser = req.user;
+//   User.findById(req.params.id).populate('resources').lean()
+//     .then(currentUser => {
+//       res.render("likedContent", {
+//         currentUser
+//       });
+//     })
+//     .catch(err => {
+//       console.log(err.message);
+//     });
+// });
+
+// // CK: Migrated to ./controllers/clones.js
+// // SAVE resource
+// app.post('/user/:id/resources/:resourceId', function (req, res) {
+//   const currentUser = req.user;
+//   const save = req.params.resourceId;
+//   // console.log(currentUser, req.user._id, req.params.resourceId);
+//   Resource.findById(save)
+//     .then((resource) => {
+//       // console.log(resource);
+//       User.findById(currentUser)
+//         .then((user) => {
+//           // this works sometimes. it seems to be something with asynchronicity of
+//           // node callbacks (?). we need a promise or something
+//           console.log("username: " + user.username)
+//           user.likedContent.unshift(resource);
+//           console.log("added resource: " + user.likedContent[0]);
+//           // res.redirect(`/user/${currentUser.id}`)
+//           // return Promise.all([
+//           //     user.save()
+//           // ]);
+//           res.redirect(`/user/${req.params.userId}`);
+//         })
+//     })
+//     // .then(user => {
+//     //     res.redirect(`/user/${req.params.userId}`);
+//     // })
+//     .catch(err => {
+//       console.log(err);
+//     });
+
+// });
