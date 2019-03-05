@@ -32,7 +32,7 @@ module.exports = function (app) {
     var currentUser = req.user;
     console.log(currentUser)
     res.render('resources-new', {
-      resource: currentUser
+      currentUser
     });
   });
 
