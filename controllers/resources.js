@@ -1,7 +1,6 @@
-const List = require('../models/list'); // may need if we're sticking the deep copy route here
 const Resource = require('../models/resource');
 const User = require('../models/user');
-// var admin = require('../app');
+var admin = require('../app');
 
 // CK: "List: Resources :: redditPost: redditComment"
 
@@ -48,64 +47,38 @@ module.exports = function (app) {
       console.log(err.message);
     });
   });
-  // 
-  // app.get('/moods/:mood', function (req, res) {
-  //   Resource.find({
-  //     moods: {
-  //       $all: [req.params.mood]
-  //     }
-  //   }).then(function (resources) {
-  //     console.log(resources)
-  //     res.render('mood-resource-index', {
-  //       resources: resources,
-  //       mood: req.params.mood
-  //     });
-  //   }).catch(function (err) {
-  //     console.log(err.message);
-  //   });
-  // });
 
+  // CREATE list of favorites!
+  app.post('/user/:id/resources/:resourceId', function (req, res) {
+    const currentUser = req.user;
+    const save = req.params.resourceId;
+    Resource.findById(save)
+      .then(function (resource) {
+        User.findById(currentUser)
+          .then(function (user) {
+            // JM: This works sometimes. Seems to have something to do with the asynchronicity of node callbacks. Need a promise or something.
+            console.log('username: ' + user.username);
+            user.likedContent.unshift(resource);
+            console.log('added resource: ' + user.likedContent[0]);
+            // res.redirect(`/user/${req.params.userId}`);
+            res.redirect(`/user/${req.params.userId}/favorites`);
+          })
+      }).catch(function (err) {
+        console.log(err);
+      });
+  });
 
-  //   // CREATE NEW resource // CK: No longer using arrays for 'mood'
-  //   app.post('/resources', function (req, res) {
-  //     Resource.create(req.body).then(function (resource) {
-  //       parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
-  //       resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
-  //       console.log(resource);
-  //       resource.save();
-  //       res.redirect(`/`);
-  //     }).catch(function (err) {
-  //       console.log(err.message);
-  //     });
-  //   });
+  // SHOW list of favorites! Woo hoo
+  app.get('/user/:id/favorites', function (req, res) {
+    if (req.user) {
+      res.render('lists');
+    } else {
+      return res.status(401); // unauthorized
+    }
+  })
 
-  // // Index/Read for a SPECIFIC mood
-  // app.get('/moods/:mood', (req, res) => {
-  //   Resource.find({moods: {$all:[req.params.mood]}}).then(resources => {
-  //     console.log(resources)
-  //     res.render('by-mood', {resources: resources, mood: req.params.mood});
-  //   }).catch(err => {
-  //     console.log(err.message);
-  //   });
-  // });
-
-  // CK: note to self - address this later
-  // CK: note to self - have the buttons on landing page direct to here
-  // CK: note to self - will need to have some other things direct to here, too (ex. "show me another" button on a single shown recommendation)
-  // // SHOW a SINGLE resource for a SPECIFIC mood
-  // app.get('/:mood', (req, res) => {
-  //   // find resource
-  //   Resource.findById(req.params.id).then(resource => {
-  //       res.render('resources-show-admin', { resource: resource})})
-  //       .catch((err) => {
-  //     console.log(err.message)
-  //   });
-  // });
-
-  // ---------- ADMIN FEATURES BELOW ------------
-
-
-  // SHOW A single resource for ADMIN USE ONLY
+  // ADMIN USER ONLY
+  // SHOW A single resource
   app.get('/resources/:id', function (req, res) {
     // find resource
     Resource.findById(req.params.id).then(function (resource) {
@@ -118,7 +91,8 @@ module.exports = function (app) {
       });
   });
 
-  //admin see all to edit
+  // ADMIN USER ONLY
+  // see all to EDIT
   app.get('/index', function (req, res) {
     Resource.find()
       .then(function (resources) {
@@ -131,6 +105,7 @@ module.exports = function (app) {
       })
   });
 
+  // ADMIN USER ONLY
   // EDIT a resource by clicking on the edit link in the shown resource
   // CK: EDIT yields the FORM to make changes to an existing item
   app.get('/resources/:id/edit', function (req, res) {
@@ -141,9 +116,8 @@ module.exports = function (app) {
     })
   });
 
-
-  // UPDATE... does this replace EDIT? ...guess not...
-  // CK: UPDATE represents the actual process of ENACTING the changes made by user in the form that they received from EDIT. It's the same way CREATE actually ... well ... CREATES the thing that the user wrote the contents of in the form they received from NEW.
+  // ADMIN USER ONLY
+  // UPDATE the resource with edits
   app.put('/resources/:id', function (req, res) {
     Resource.findByIdAndUpdate(req.params.id, req.body).then(function (resource) {
         res.redirect('/index');
@@ -153,7 +127,7 @@ module.exports = function (app) {
       })
   });
 
-
+  // ADMIN USER ONLY
   // DELETE one resource from the delete button on the "shown" resource page
   app.delete(`/resources/:id`, function (req, res) {
     console.log("DELETE resource")
@@ -164,3 +138,31 @@ module.exports = function (app) {
     })
   });
 };
+
+// CK: Was working with Betsy on this - sidelining for now
+// app.get('/moods/:mood', function (req, res) {
+//   Resource.find({
+//     moods: {
+//       $all: [req.params.mood]
+//     }
+//   }).then(function (resources) {
+//     console.log(resources)
+//     res.render('mood-resource-index', {
+//       resources: resources,
+//       mood: req.params.mood
+//     });
+//   }).catch(function (err) {
+//     console.log(err.message);
+//   });
+// });
+
+// // CK: Prob won't use
+// // Index/Read for a SPECIFIC mood
+// app.get('/moods/:mood', (req, res) => {
+//   Resource.find({moods: {$all:[req.params.mood]}}).then(resources => {
+//     console.log(resources)
+//     res.render('by-mood', {resources: resources, mood: req.params.mood});
+//   }).catch(err => {
+//     console.log(err.message);
+//   });
+// });
