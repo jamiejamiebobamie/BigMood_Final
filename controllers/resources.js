@@ -1,6 +1,6 @@
 const Resource = require('../models/resource');
 const User = require('../models/user');
-// var admin = require('../app');
+var admin = require('../app');
 
 // CK: "List: Resources :: redditPost: redditComment"
 

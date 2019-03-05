@@ -21,13 +21,12 @@ const UserSchema = new Schema({
   },
   likedContent: [{
     type: Schema.Types.ObjectId,
-    ref: "Resource",
-    required: false
+    ref: "Resource"
   }], // CK: Will be adding the Resource ID to this list. THEN have that all render.. by REFERENCING THIS MODEL
-  admin: {
-    type: Boolean,
-    required: true
-  }
+  // admin: {
+  //   type: Boolean,
+  //   required: true
+  // }
 });
 
 // Apply the uniqueValidator plugin to userSchema.

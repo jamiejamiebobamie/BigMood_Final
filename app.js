@@ -23,8 +23,6 @@ const checkAuth = (function (req, res, next) {
 });
 
 require('dotenv').config();
-require('./controllers/auth.js')(app);
-require('./controllers/resources.js')(app);
 
 // database
 const db = require('./database/bmdb');
@@ -50,6 +48,9 @@ app.use(bodyParser.urlencoded({
 app.use(expressValidator()); // CK: this MUST ALWAYS come AFTER body parser init
 app.use(checkAuth);
 app.use(express.static('public')); // sample images from past projects for testing
+
+require('./controllers/auth.js')(app);
+require('./controllers/resources.js')(app);
 
 // ring ring... anyone there?
 app.listen(port, () => {

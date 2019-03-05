@@ -2,7 +2,7 @@ const Resource = require('../models/resource');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-// var admin = require('../app');
+var admin = require('../app');
 
 module.exports = function (app) {
 
@@ -13,10 +13,11 @@ module.exports = function (app) {
 
   // CREATE user, i.e. user is signed up!
   app.post('/sign-up', function (req, res) {
+    console.log(req.body)
     const newUser = new User(req.body);
-    newUser.save().then((newUser) => {
+    newUser.save().then((user) => {
       var token = jwt.sign({
-        _id: newUser._id
+        _id: user._id
       }, process.env.SECRET, {
         expiresIn: "30 days"
       });
@@ -50,7 +51,7 @@ module.exports = function (app) {
       .then(function (newUser) {
         if (!newUser) {
           return res.status(401).send({
-            message: 'Invalid credentials'
+            message: 'Invalid credentials #1'
           });
         }
         newUser.comparePassword(password, function (err, isMatch) {
