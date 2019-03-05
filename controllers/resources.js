@@ -40,6 +40,7 @@ module.exports = function (app) {
   // CREATE NEW resource
   app.post('/resources/new', function (req, res) {
       Resource.create(req.body).then(function(resource) {
+          resource.save()
           console.log(resource)
           res.redirect('/')
       }).catch(function(err) {
