@@ -1,21 +1,29 @@
 <!-- this is where we will put the list of saved content items -->
-<div class="row">
-  <div id="test" class="col-sm-6 col-sm-offset-3">
-    <h1>{{resource.resource}}</h1>
-    <h2>-{{resource.author}}</h2>
-    <h3>{{resource.time}}</h3>
-    <h4>{{resource.hashtag}}</h4>
+
+<h3>Your Favorites</h3>
+<div class='container'>
+  <div class='jumbotron'>
+
+    {{#if currentUser}}
+
+    {{#if this.user}}
+    {{#each user.likedContent}}
+
+    <div class='row'>
+      <div class='col-sm' <a href='{{resource.link}}' class='lead'>{{resource.resource}}</a>
+        <p>Mood: {{resource.mood}}</p>
+      </div>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    {{else}}
+    <div class='row'>
+      <div class='col-sm' class='lead'>
+        <legend>No Favorites :( Sign up to start saving favorites!</legend>
+      </div>
+    </div>
+    {{/if}}
+
   </div>
-</div>
-
-
-<div>
-  <span style="float:right">
-    <p><a href="/resources/{{resource._id}}/edit">Edit</a></p>
-    <p>
-      <form method="POST" action="/resources/{{resource._id}}?_method=DELETE">
-        <button class="btn btn-primary" type="submit">Delete</button>
-      </form>
-    </p>
-  </span>
 </div>
