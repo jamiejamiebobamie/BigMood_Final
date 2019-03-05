@@ -1,5 +1,6 @@
 const Resource = require('../models/resource');
 const User = require('../models/user');
+// const app = express();
 var admin = require('../app');
 
 // CK: "List: Resources :: redditPost: redditComment"
@@ -137,7 +138,27 @@ module.exports = function (app) {
       console.log(err.message);
     })
   });
+  app.post('/:resourceId', (req, res) => {
+    var currentUser = req.user;
+    const save = req.originalUrl
+    const saved = save.substring(1)
+    console.log(db)
+    // const save = window.location.href
+    // const save = document.URL;
+    // const save = req.resource._id
+    // console.log(save)
+    db.currentUser.update(null, {
+      $push: {
+        likedContent: saved
+      }
+    })
+    res.render('moods_home/angry', {
+      resource: currentUser
+    });
+  });
 };
+
+
 
 // CK: Was working with Betsy on this - sidelining for now
 // app.get('/moods/:mood', function (req, res) {
