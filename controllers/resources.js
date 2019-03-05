@@ -1,5 +1,6 @@
 const Resource = require('../models/resource');
 const User = require('../models/user');
+const db = require('../database/bmdb');
 // const app = express();
 var admin = require('../app');
 
@@ -37,16 +38,13 @@ module.exports = function (app) {
   });
 
   // CREATE NEW resource
-  app.post('/resources', function (req, res) {
-    Resource.create(req.body).then(function (resource) {
-      parsedMood = req.body.moodString.split(", "); // CK: turns user's mood input from a string to an array
-      resource.mood = parsedMood; // CK: reassigns meaning for parsedMood
-      console.log(resource);
-      resource.save();
-      res.redirect(`/`);
-    }).catch(function (err) {
-      console.log(err.message);
-    });
+  app.post('/resources/new', function (req, res) {
+      Resource.create(req.body).then(function(resource) {
+          console.log(resource)
+          res.redirect('/')
+      }).catch(function(err) {
+          console.log(err.message)
+      })
   });
 
   // CREATE list of favorites!
@@ -138,24 +136,24 @@ module.exports = function (app) {
       console.log(err.message);
     })
   });
-  app.post('/:resourceId', (req, res) => {
-    var currentUser = req.user;
-    const save = req.originalUrl
-    const saved = save.substring(1)
-    console.log(db)
-    // const save = window.location.href
-    // const save = document.URL;
-    // const save = req.resource._id
-    // console.log(save)
-    db.currentUser.update(null, {
-      $push: {
-        likedContent: saved
-      }
-    })
-    res.render('moods_home/angry', {
-      resource: currentUser
-    });
-  });
+  // app.post('/:resourceId', (req, res) => {
+  //   var currentUser = req.user;
+  //   const save = req.originalUrl
+  //   const saved = save.substring(1)
+  //   // console.log(db)
+  //   // const save = window.location.href
+  //   // const save = document.URL;
+  //   // const save = req.resource._id
+  //   // console.log(save)
+  //   db.currentUser.update(null, {
+  //     $push: {
+  //       likedContent: saved
+  //     }
+  //   })
+  //   res.render('moods_home/angry', {
+  //     resource: currentUser
+  //   });
+  // });
 };
 
 
