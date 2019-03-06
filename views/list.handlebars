@@ -5,9 +5,8 @@
 <div class='container'>
   <div class='jumbotron'>
 
-    {{#if currentUser}}
 
-    {{!-- {{#if this.user}} --}}
+    {{#if this.user}}
     {{#each user.likedContent}}
 
     <div class='row'>
@@ -16,14 +15,6 @@
       </div>
     </div>
     {{/each}}
-    {{!-- {{/if}} --}}
-
-    {{else}}
-    <div class='row'>
-      <div class='col-sm' class='lead'>
-        <legend>No Favorites :( Sign up to start saving favorites!</legend>
-      </div>
-    </div>
     {{/if}}
 
   </div>
