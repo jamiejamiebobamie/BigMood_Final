@@ -1,4 +1,5 @@
 // INITIALIZE ALLL THE THINGS
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser'); //for JSON data
 const expressValidator = require('express-validator');
@@ -25,7 +26,6 @@ const checkAuth = (function (req, res, next) {
   next();
 });
 
-require('dotenv').config();
 
 // database
 const db = require('./database/bigmood-final');
