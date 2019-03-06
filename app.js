@@ -39,9 +39,9 @@ mongoose.set('useCreateIndex', true); // CK: https://stackoverflow.com/questions
 
 // MIDDLEWARE
 // mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/bigmood-final'), {
-mongoose.connect((process.env.MONGODB_URI || 'mongodb://normal:7umbrellaacademy@ds139920.mlab.com:39920/heroku_txdnvkz5'), {
-  useNewUrlParser: true
-}); // CK: heroku db || local
+//   // mongoose.connect((process.env.MONGODB_URI || 'mongodb://normal:7umbrellaacademy@ds139920.mlab.com:39920/heroku_txdnvkz5'), {
+//   useNewUrlParser: true
+// }); // CK: heroku db || local
 app.use(methodOverride('_method')) // CK: override with POST having ?_method=DELETE or ?_method=PUT
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
