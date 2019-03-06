@@ -10,6 +10,9 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 9000;
 const app = express();
+
+
+
 const checkAuth = (function (req, res, next) {
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
