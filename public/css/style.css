@@ -16,6 +16,19 @@
   }
 }
 
+.col-sm{
+    color: white;
+    margin: 2vw;
+}
+
+.lead{
+    color:white;
+}
+
+.form-group{
+    color: white;
+}
+
 legend{
     color: white;
 }
