@@ -10,8 +10,8 @@
     {{#each user.likedContent}}
 
     <div class='row'>
-      <div class='col-sm' <a href='{{likedContent.link}}' class='lead'>{{likedContent.resource}}</a>
-        <p>Mood: {{likedContent.mood}}</p>
+      <div class='col-sm' <a href='{{this.link}}' class='lead'>{{this.resource}}</a>
+        <p>Mood: {{this.mood}}</p>
       </div>
     </div>
     {{/each}}
