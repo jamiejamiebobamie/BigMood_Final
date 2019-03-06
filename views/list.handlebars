@@ -7,11 +7,13 @@
 
     {{#if currentUser}}
     {{#each currentUser.likedContent}}
+    <br>
     <div class='row'>
-      <div class='col-sm' <a href='{{this.link}}' class='lead'>{{this.resource}}</a>
-        <p>Mood: {{this.mood}}</p>
-      </div>
+      <p><b>{{this.mood}}</b></p>
+      <p>{{this.resource}}</p>
+      <p>{{this.link}}</p>
     </div>
+    <br>
     {{/each}}
     {{/if}}
 
