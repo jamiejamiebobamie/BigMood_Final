@@ -1,21 +1,22 @@
 <!-- this is where we will put the list of saved content items -->
 
-<h3>Your Favorites</h3>
+<legend>My Favorites</legend>
+<br>
 <div class='container'>
   <div class='jumbotron'>
 
     {{#if currentUser}}
 
-    {{#if this.user}}
+    {{!-- {{#if this.user}} --}}
     {{#each user.likedContent}}
 
     <div class='row'>
-      <div class='col-sm' <a href='{{resource.link}}' class='lead'>{{resource.resource}}</a>
-        <p>Mood: {{resource.mood}}</p>
+      <div class='col-sm' <a href='{{likedContent.link}}' class='lead'>{{likedContent.resource}}</a>
+        <p>Mood: {{likedContent.mood}}</p>
       </div>
     </div>
     {{/each}}
-    {{/if}}
+    {{!-- {{/if}} --}}
 
     {{else}}
     <div class='row'>

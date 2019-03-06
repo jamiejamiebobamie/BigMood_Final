@@ -2,9 +2,7 @@
   <div id="test" class="col-sm-6 col-sm-offset-3">
     <h1>{{resource.resource}}</h1>
     <h2><b>Link: </b>{{resource.link}}</h2>
-    <h3><b>Mood: </b> {{#each resource.moods}}
-      <a href="/moods/{{this}}">{{this}}...</h3></a>
-    {{/each}}
+    <h3><b>Mood: </b> {{resource.mood}}</h3>
   </div>
 </div>
 

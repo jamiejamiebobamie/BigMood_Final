@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 assert = require("assert");
 
-const url = "mongodb://localhost/bmdb";
+const url = "mongodb://localhost/bigmood-final";
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  "mongodb://localhost/bmdb", {
+  "mongodb://localhost/bigmood-final", {
     useNewUrlParser: true
   },
   function (err, db) {

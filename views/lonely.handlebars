@@ -1,6 +1,5 @@
 <div class="jumbotron">
   <p class="lead">{{resource.resource}}</p>
-  <p><a href="{{resource.user}}">{{resource.user}}</a></p>
   <p>{{resource.mood}}</p>
   <p class="lead">
     <button><a href="/lonely">Refresh</a></button>
@@ -8,7 +7,6 @@
 </div>
 
 
-<!-- <h3><center><a href="/bored">Refresh</a></center></h3> -->
 
 <form action="/user/{{currentUser._id}}/resources/{{resource._id}}" method="post">
   <div class="text-right">

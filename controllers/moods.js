@@ -1,9 +1,11 @@
 const Resource = require('../models/resource');
+const User = require('../models/user');
 
 module.exports = function (app) {
 
   app.get('/angry', function (req, res) {
     var currentUser = req.user;
+    console.log('HAHAHAHA: ' + currentUser);
     Resource.count({
       mood: 'Angry'
     }).exec(function (err, count) {

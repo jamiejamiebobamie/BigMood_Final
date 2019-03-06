@@ -12,12 +12,15 @@ const app = express();
 const checkAuth = (function (req, res, next) {
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
+    console.log("no uSer")
   } else {
     const token = req.cookies.nToken;
     const decodedToken = jwt.decode(token, {
       complete: true
     }) || {};
     req.user = decodedToken.payload;
+    console.log(req.user);
+    console.log(req.user._id);
   }
   next();
 });
@@ -25,7 +28,7 @@ const checkAuth = (function (req, res, next) {
 require('dotenv').config();
 
 // database
-const db = require('./database/bmdb');
+const db = require('./database/bigmood-final');
 
 // reducing deprecation warnings
 mongoose.set('useFindAndModify', false) // CK: https://github.com/Automattic/mongoose/issues/6880

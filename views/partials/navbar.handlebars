@@ -11,9 +11,8 @@
     {{!-- Auth buttons --}}
     <div class="nav navbar-nav navbar-right">
       {{#if currentUser}}
-      {{!-- <h1>currentUser</h1> --}}
       <a href="/resources/new" class="btn btn-default navbar-btn">Submit Content</a>
-      <a href="/user/{{currentUser._id}}" class="btn btn-default navbar-btn">My Content</a>
+      <a href="/user/{{currentUser._id}}/favorites" class="btn btn-default navbar-btn">My Favorites</a>
       <a href="/index" class="btn btn-default navbar-btn">Admin</a>
       <a href="/logout" class="btn btn-default navbar-btn">Log Out</a>
       <!-- <a href="/index"><font size=1 color="black">admin</font></a>

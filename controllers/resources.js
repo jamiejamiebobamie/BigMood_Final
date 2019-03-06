@@ -1,17 +1,14 @@
 const Resource = require('../models/resource');
 const User = require('../models/user');
-const db = require('../database/bmdb');
-// const app = express();
+const db = require('../database/bigmood-final');
 var admin = require('../app');
-
-// CK: "List: Resources :: redditPost: redditComment"
 
 module.exports = function (app) {
 
   //ROOT ROUTE
   //https://stackoverflow.com/questions/39277670/how-to-find-random-record-in-mongoose
   app.get('/', function (req, res) {
-    var currentUser = req.user;
+    const currentUser = req.user;
     Resource.count().exec(function (err, count) {
       // "Get a random entry"
       var random = Math.floor(Math.random() * count)
@@ -30,7 +27,7 @@ module.exports = function (app) {
 
   // NEW resource form
   app.get('/resources/new', function (req, res) {
-    var currentUser = req.user;
+    const currentUser = req.user;
     console.log(currentUser)
     res.render('resources-new', {
       currentUser
@@ -39,17 +36,17 @@ module.exports = function (app) {
 
   // CREATE NEW resource
   app.post('/resources/new', function (req, res) {
-      Resource.create(req.body).then(function(resource) {
-          resource.save()
-          console.log(resource)
-          res.redirect('/')
-      }).catch(function(err) {
-          console.log(err.message)
-      })
+    Resource.create(req.body).then(function (resource) {
+      resource.save()
+      console.log(resource)
+      res.redirect('/')
+    }).catch(function (err) {
+      console.log(err.message)
+    })
   });
 
   // CREATE list of favorites!
-  app.post('/user/:id/resources/:resourceId', function (req, res) {
+  app.post('/user/:id/favorites', function (req, res) {
     const currentUser = req.user;
     const save = req.params.resourceId;
     Resource.findById(save)
@@ -60,8 +57,7 @@ module.exports = function (app) {
             console.log('username: ' + user.username);
             user.likedContent.unshift(resource);
             console.log('added resource: ' + user.likedContent[0]);
-            // res.redirect(`/user/${req.params.userId}`);
-            res.redirect(`/user/${req.params.userId}/favorites`);
+            res.redirect(`/user/${currentUser._id}/favorites`);
           })
       }).catch(function (err) {
         console.log(err);
@@ -70,8 +66,11 @@ module.exports = function (app) {
 
   // SHOW list of favorites! Woo hoo
   app.get('/user/:id/favorites', function (req, res) {
-    if (req.user) {
-      res.render('lists');
+    const currentUser = req.user;
+    if (currentUser) {
+      res.render('list', {
+        currentUser
+      });
     } else {
       return res.status(401); // unauthorized
     }
@@ -80,10 +79,12 @@ module.exports = function (app) {
   // ADMIN USER ONLY
   // SHOW A single resource
   app.get('/resources/:id', function (req, res) {
+    const currentUser = req.user;
     // find resource
     Resource.findById(req.params.id).then(function (resource) {
         res.render('resources-show-admin', {
-          resource: resource
+          resource: resource,
+          currentUser
         })
       })
       .catch(function (err) {
@@ -94,10 +95,12 @@ module.exports = function (app) {
   // ADMIN USER ONLY
   // see all to EDIT
   app.get('/index', function (req, res) {
+    const currentUser = req.user;
     Resource.find()
       .then(function (resources) {
         res.render('resources-index', {
-          resources: resources
+          resources: resources,
+          currentUser
         });
       })
       .catch(function (err) {
@@ -109,9 +112,11 @@ module.exports = function (app) {
   // EDIT a resource by clicking on the edit link in the shown resource
   // CK: EDIT yields the FORM to make changes to an existing item
   app.get('/resources/:id/edit', function (req, res) {
+    const currentUser = req.user;
     Resource.findById(req.params.id, function (err, resource) {
       res.render('resources-edit', {
-        resource: resource
+        resource: resource,
+        currentUser
       });
     })
   });
@@ -174,16 +179,4 @@ module.exports = function (app) {
 //   }).catch(function (err) {
 //     console.log(err.message);
 //   });
-// });
-
-// // CK: Prob won't use
-// // Index/Read for a SPECIFIC mood
-// app.get('/moods/:mood', (req, res) => {
-//   Resource.find({moods: {$all:[req.params.mood]}}).then(resources => {
-//     console.log(resources)
-//     res.render('by-mood', {resources: resources, mood: req.params.mood});
-//   }).catch(err => {
-//     console.log(err.message);
-//   });
-
 // });
