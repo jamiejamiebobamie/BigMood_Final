@@ -5,10 +5,8 @@
 <div class='container'>
   <div class='jumbotron'>
 
-
-    {{#if this.user}}
-    {{#each user.likedContent}}
-
+    {{#if currentUser}}
+    {{#each currentUser.likedContent}}
     <div class='row'>
       <div class='col-sm' <a href='{{this.link}}' class='lead'>{{this.resource}}</a>
         <p>Mood: {{this.mood}}</p>

@@ -19,10 +19,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  likedContent: [{
-    type: Schema.Types.ObjectId,
-    ref: "Resource"
-  }], // CK: Will be adding the Resource ID to this list. THEN have that all render.. by REFERENCING THIS MODEL
+  likedContent: Array, // CK: Will be adding the Resource ID to this list. THEN have that all render.. by REFERENCING THIS MODEL
   // admin: {
   //   type: Boolean,
   //   required: true

@@ -22,7 +22,7 @@ module.exports = function (app) {
         expiresIn: "30 days"
       });
       res.cookie('nToken', token, {
-        maxAge: 900000,
+        maxAge: 90000000,
         httpOnly: true
       });
       res.redirect('/');
@@ -66,7 +66,7 @@ module.exports = function (app) {
             expiresIn: '30 days'
           });
           res.cookie('nToken', token, {
-            maxAge: 900000,
+            maxAge: 90000000,
             httpOnly: true
           });
           res.redirect('/');

@@ -46,19 +46,18 @@ module.exports = function (app) {
   });
 
   // CREATE list of favorites!
-  app.post('/user/:id/favorites', function (req, res) {
+  app.post('/user/favorites/:id', function (req, res) {
     const currentUser = req.user;
-    const save = req.params.resourceId;
-    Resource.findById(save)
+    Resource.findById(req.params.id)
       .then(function (resource) {
         User.findById(currentUser)
           .then(function (user) {
             // JM: This works sometimes. Seems to have something to do with the asynchronicity of node callbacks. Need a promise or something.
-            console.log('username: ' + user.username);
             user.likedContent.unshift(resource);
-            // console.log('added resource: ' + user.likedContent[0]);
-            console.log('added resource: ' + user.likedContent.length);
-            res.redirect(`/user/${currentUser._id}/favorites`);
+            user.save()
+              .then(function () {
+                res.redirect(`/user/favorites/`);
+              })
           })
       }).catch(function (err) {
         console.log(err);
@@ -66,12 +65,16 @@ module.exports = function (app) {
   });
 
   // SHOW list of favorites! Woo hoo
-  app.get('/user/:id/favorites', function (req, res) {
+  app.get('/user/favorites', function (req, res) {
     const currentUser = req.user;
     if (currentUser) {
-      res.render('list', {
-        currentUser
-      });
+      User.findById(currentUser)
+        .then(function (currentUser) {
+          console.log(currentUser)
+          res.render('list', {
+            currentUser
+          });
+        })
     } else {
       return res.status(401); // unauthorized
     }
