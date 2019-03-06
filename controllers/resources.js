@@ -56,7 +56,8 @@ module.exports = function (app) {
             // JM: This works sometimes. Seems to have something to do with the asynchronicity of node callbacks. Need a promise or something.
             console.log('username: ' + user.username);
             user.likedContent.unshift(resource);
-            console.log('added resource: ' + user.likedContent[0]);
+            // console.log('added resource: ' + user.likedContent[0]);
+            console.log('added resource: ' + user.likedContent.length);
             res.redirect(`/user/${currentUser._id}/favorites`);
           })
       }).catch(function (err) {
