@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 assert = require("assert");
 
-const url = "mongodb://localhost/bigmood-final";
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  "mongodb://localhost/bigmood-final", {
+  process.env.MONGODB_URI || "mongodb://localhost/bigmood-final", {
     useNewUrlParser: true
   },
   function (err, db) {

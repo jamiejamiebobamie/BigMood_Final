@@ -1,5 +1,5 @@
 {{!-- CK: Changed some stuff. Too tired rn to recall what it is, check against the files in moods_home --}}
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <p class="lead">{{resource.resource}}</p>
   <p><a href="{{resource.link}}">{{resource.link}}</a></p>
   <p>{{resource.mood}}</p>
@@ -14,6 +14,21 @@
 
 <h3>
   <center><a href="/">Refresh</a></center>
-</h3>
+</h3> -->
+
+<div class="card text-center jumbotron" >
+  <div class="card-header">
+    I'm Feeling {{resource.mood}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{resource.resource}}</h5>
+
+    <a href={{resource.link}} class="btn btn-primary">Take Me</a>
+  </div>
+  <div class="card-footer text-muted">
+    {{resource.time}}
+  </div>
+</div>
+
 
 <!-- /{{list._id}}?_method=PUT -->
