@@ -22,15 +22,18 @@ Our online platform is hosted on Heroku, [**here**.](https://big-mood-ck.herokua
 On our iOS Application you are prompted to choose from a mood and then taken to a page with great content.
 
 
-![Image of Bigmoodheader](https://media.giphy.com/media/5kG6JstxlcXCGdn9B4/giphy.gif)
+![Image of iOS gif](https://media.giphy.com/media/5kG6JstxlcXCGdn9B4/giphy.gif)
 
 You can download the iOS app on Test Flight, [**here.**](https://testflight.apple.com/join/7spSPtKw)
 ## Team Development Process
 Big Mood is created by Best Team Ever. We are four students studying applied computer science in San Francisco. We made use of traditional Agile development processes, utilizing SCRUM methodology. Our sprints traditionally lasted one week and sought to ship (design, code, & deliver) one new feature every week.
 ### Best Team Ever's Members
 [**Betsy Bailey**](https://www.makeschool.com/portfolio/Betsy-Bailey), Product Manager & Backend Engineer
+
 [**Jonathan Kopp**](https://www.makeschool.com/portfolio/JonathanKopp), Head of Mobile Development, Lead iOS Engineer & Graphic Designer
+
 [**Cherish Kim**](https://github.com/cherishkim42), Lead Backend Engineer & Git Master
+
 [**Jamie McCrory**](https://www.makeschool.com/portfolio/Jamie-McCrory), Lead Frontend Engineer & Backend Engineer
 
 ## Web Development
@@ -58,13 +61,13 @@ Change directory into the new Big Mood File
 `cd BigMood_Final`
 
 Be sure you have Node Package Manager installed on you computer and run
-`npm install` [^1]
+`npm install`[^1]
 [^1]: Note: it is important to have Express.js and MongoDB installed on your computer, as well as Mongoose
 
 Insure Nodemon is installed on your computer and run
 `nodemon app.js`
 
-Navigate to [LocalHost](http://localhost:9000/) [^2] in your browser window to see your changes locally once you save them.
+Navigate to [LocalHost](http://localhost:9000/)[^2] in your browser window to see your changes locally once you save them.
 
 [^2]: Our app listens on Port 9000, so be sure you are navigating to http://localhost:9000/ .
 
