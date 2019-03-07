@@ -12,7 +12,7 @@ The modern world may be filled with readily accessible distractions for those wh
 
 Once arriving at Big Mood you will be prompted to select from a list of curated moods. After choosing a mood you will be taken to new page containg a curated article or content item that is designed to help you deal with your mood in the healthiest way possible. Here, you can click a link to take to take you to the article's url as well as save it to a personal list of items (if logged in).
 
-![Image of Bigmoodheader](https://media.giphy.com/media/8mhdvZb9kpK8lkjoOo/giphy.gif)
+![Web App Gif](https://media.giphy.com/media/8mhdvZb9kpK8lkjoOo/giphy.gif)
 
 Users have the ability to create an account which enables them to save articles or other content they like or want to refer to later, to a list. They are also able to upload content accoding to different moods themselves to create a richer list of resources for people to use.
 
@@ -22,7 +22,7 @@ Our online platform is hosted on Heroku, [**here**.](https://big-mood-ck.herokua
 On our iOS Application you are prompted to choose from a mood and then taken to a page with great content.
 
 
-![Image of Bigmoodheader](https://media.giphy.com/media/NT23l258seWtYV6lFL/giphy.gif)
+![iOS gif](https://media.giphy.com/media/NT23l258seWtYV6lFL/giphy.gif)
 
 You can download the iOS app on Test Flight, [here.](https://testflight.apple.com/join/7spSPtKw)
 
