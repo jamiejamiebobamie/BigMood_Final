@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <p class="lead">{{resource.resource}}</p>
   <p>{{resource.mood}}</p>
   <p class="lead">
@@ -10,4 +10,25 @@
 
 <div>
   <button><a href="/sad">Refresh</a></button>
+</div> -->
+
+<div class="card text-center jumbotron" >
+  <div class="card-header h3">
+    I'm Feeling {{resource.mood}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title h2">{{resource.resource}}</h5>
+
+    <a href={{resource.link}} class="card-link h4">Take Me</a>
+  </div>
+  <div class="card-footer text-muted">
+      <p class="card-link">
+        <form action="/user/favorites/{{resource._id}}" method="post">
+          <div><button type='submit' class='card-link h6 '>Save To Favorites</button></div>
+        </form>
+      </p>
+  </div>
+  <div>
+    <button class='card-link' ><a href="/angry">Refresh</a></button>
+  </div>
 </div>
