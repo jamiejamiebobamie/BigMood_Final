@@ -22,15 +22,52 @@ Our online platform is hosted on Heroku, [**here**.](https://big-mood-ck.herokua
 On our iOS Application you are prompted to choose from a mood and then taken to a page with great content.
 
 
-![iOS gif](https://media.giphy.com/media/NT23l258seWtYV6lFL/giphy.gif)
+![Image of Bigmoodheader](https://media.giphy.com/media/5kG6JstxlcXCGdn9B4/giphy.gif)
 
-You can download the iOS app on Test Flight, [here.](https://testflight.apple.com/join/7spSPtKw)
+You can download the iOS app on Test Flight, [**here.**](https://testflight.apple.com/join/7spSPtKw)
+## Team Development Process
+Big Mood is created by Best Team Ever. We are four students studying applied computer science in San Francisco. We made use of traditional Agile development processes, utilizing SCRUM methodology. Our sprints traditionally lasted one week and sought to ship (design, code, & deliver) one new feature every week.
+### Best Team Ever's Members
+[**Betsy Bailey**](https://www.makeschool.com/portfolio/Betsy-Bailey), Product Manager & Backend Engineer
+[**Jonathan Kopp**](https://www.makeschool.com/portfolio/JonathanKopp), Head of Mobile Development, Lead iOS Engineer & Graphic Designer
+[**Cherish Kim**](https://github.com/cherishkim42), Lead Backend Engineer & Git Master
+[**Jamie McCrory**](https://www.makeschool.com/portfolio/Jamie-McCrory), Lead Frontend Engineer & Backend Engineer
 
-## Development
-Web app built using JavaScript, Handlebars, and Mongo.
+## Web Development
+Big Mood's web application was built using JavaScript, Node.js, Express, Handlebars as middleware, and MongoDB with Mongoose as our database.
 
 ### Our Web Development Team
-Betsy Bailey, Cherish Kim, & Jaime McCrory
+Cherish Kim, Jaime McCrory & Betsy Bailey
 
-### iOS Development
-Lead Mobile Developer: Jonathan Kopp
+## iOS Development
+Big Mood's mobile application is written in Swift and utilizes Firebase.
+
+The Git Repository for the Mobile Application is hosted in a seprate repository which you can see, [**here.**](https://github.com/JonKopp99/BigMood)
+
+### Our iOS Development Team
+Jonathan Kopp, Lead iOS Engineer
+
+## Work With Big Mood
+To suggest edits, add additional content, or make any contribution please leave a pull request.
+
+### To run Big Mood's web app locally
+Clone into this repository by running the following command in your terminal:
+`git clone https://github.com/jamiejamiebobamie/BigMood_Final`
+
+Change directory into the new Big Mood File
+`cd BigMood_Final`
+
+Be sure you have Node Package Manager installed on you computer and run
+`npm install` [^1]
+[^1]: Note: it is important to have Express.js and MongoDB installed on your computer, as well as Mongoose
+
+Insure Nodemon is installed on your computer and run
+`nodemon app.js`
+
+Navigate to [LocalHost](http://localhost:9000/) [^2] in your browser window to see your changes locally once you save them.
+
+[^2]: Our app listens on Port 9000, so be sure you are navigating to http://localhost:9000/ .
+
+
+# We hope you enjoy using Big Mood!
+### Thank you for learning more about us.
