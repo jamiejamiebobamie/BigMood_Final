@@ -61,15 +61,15 @@ Change directory into the new Big Mood File
 `cd BigMood_Final`
 
 Be sure you have Node Package Manager installed on you computer and run
-`npm install`[^1]
-[^1]: Note: it is important to have Express.js and MongoDB installed on your computer, as well as Mongoose
+`npm install`
+Note: it is important to have Express.js and MongoDB installed on your computer, as well as Mongoose
 
 Insure Nodemon is installed on your computer and run
 `nodemon app.js`
 
-Navigate to [LocalHost](http://localhost:9000/)[^2] in your browser window to see your changes locally once you save them.
+Navigate to [LocalHost](http://localhost:9000/) in your browser window to see your changes locally once you save them.
 
-[^2]: Our app listens on Port 9000, so be sure you are navigating to http://localhost:9000/ .
+Note: Our app listens on Port 9000, so be sure you are navigating to http://localhost:9000/ .
 
 
 # We hope you enjoy using Big Mood!
