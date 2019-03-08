@@ -45,6 +45,15 @@ module.exports = function (app) {
     })
   });
 
+  // REDIRECT if user tries to save w/o being logged-in
+  app.get('/loginError', function (req, res) {
+    const currentUser = req.user;
+    console.log(currentUser)
+    res.render('loginError', {
+      currentUser
+    });
+  });
+
   // CREATE list of favorites!
   app.post('/user/favorites/:id', function (req, res) {
     const currentUser = req.user;

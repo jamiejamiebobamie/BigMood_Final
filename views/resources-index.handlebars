@@ -2,9 +2,11 @@
 
 <div class="row">
   {{#each resources}}
+    <div class="card-header h3">
   <div class="col-sm-3">
     <h2><a href="/resources/{{this._id}}">{{this.resource}}</a></h2>
     <small>{{this.link}}</small>
+  </div>
   </div>
   {{/each}}
 </div>

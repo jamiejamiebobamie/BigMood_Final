@@ -22,11 +22,19 @@
     <a href={{resource.link}} class="card-link h4">Take Me</a>
   </div>
   <div class="card-footer text-muted">
+      {{#if currentUser}}
       <p class="card-link">
-        <form action="/user/favorites/{{resource._id}}" method="post">
+        <form action="/user/favorites/{{resource._id}}" method="get">
           <div><button type='submit' class='card-link h6 '>Save To Favorites</button></div>
         </form>
       </p>
+      {{else}}
+      <p class="card-link">
+        <form action="/loginError" method="">
+          <div><button type='submit' class='card-link h6 '>Save To Favorites</button></div>
+        </form>
+      </p>
+      {{/if}}
   </div>
   <div>
     <button class='card-link' ><a href="/lonely">Refresh</a></button>

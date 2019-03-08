@@ -16,25 +16,37 @@
   }
 }
 
+/* h2{
+    color: white !important;
+    margin: 2vw;
+} */
+
 .col-sm{
-    color: white;
+    color: black;
     margin: 2vw;
 }
 
 .lead{
-    color:white;
+    color:black;
 }
 
 .form-group{
-    color: white;
+    color: black;
+}
+
+p{
+    font-size: 15pt;
+    margin: 2vw;
 }
 
 legend{
-    color: white;
+    font-size: 30pt;
+    color: black;
 }
 
 .navbar-navbar-default{
     padding: 5%;
+    background-color:#008ECC;
 
     /* original blue color of the site: */
     /* background-color: #5CCAF1; */
@@ -44,7 +56,8 @@ body{
     position: relative;
     height: 100%;
     width: 100%;
-    background-image: url('https://images.pexels.com/photos/392586/pexels-photo-392586.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-image: white;
+    /* url('https://images.pexels.com/photos/392586/pexels-photo-392586.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); */
 
     /* original blue color of the site: */
     /* background-color: #5CCAF1; */
@@ -61,15 +74,15 @@ body{
 }
 
 p{
-    color: white;
+    color: black;
 }
 
 h1{
-    color: white;
+    color: black;
 }
 
 h3{
-    color: white;
+    color: black;
 }
 
 /* center{
