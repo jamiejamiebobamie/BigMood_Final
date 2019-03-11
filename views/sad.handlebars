@@ -22,6 +22,7 @@
     <a href={{resource.link}} class="card-link h4">Take Me</a>
   </div>
   <div class="card-footer text-muted">
+<<<<<<< HEAD
     {{#if currentUser}}
     <p class="card-link">
       <form action="/user/favorites/" method="get">
@@ -35,6 +36,21 @@
       </form>
     </p>
     {{/if}}
+=======
+      {{#if currentUser}}
+      <p class="card-link">
+        <form action="/user/favorites/{{resource._id}}" method="post">
+          <div><button type='submit' class='card-link h6 '>Save To Favorites</button></div>
+        </form>
+      </p>
+      {{else}}
+      <p class="card-link">
+        <form action="/loginError" method="">
+          <div><button type='submit' class='card-link h6 '>Save To Favorites</button></div>
+        </form>
+      </p>
+      {{/if}}
+>>>>>>> 9ee93ee3cc144ed2c4ef36bd137735d3fb583d7d
   </div>
   <div>
     <button class='card-link'><a href="/sad">Refresh</a></button>
