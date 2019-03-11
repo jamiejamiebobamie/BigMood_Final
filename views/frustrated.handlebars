@@ -24,7 +24,7 @@
   <div class="card-footer text-muted">
       {{#if currentUser}}
       <p class="card-link">
-        <form action="/user/favorites/{{resource._id}}" method="get">
+        <form action="/user/favorites/{{resource._id}}" method="post">
           <div><button type='submit' class='card-link h6 '>Save To Favorites</button></div>
         </form>
       </p>
