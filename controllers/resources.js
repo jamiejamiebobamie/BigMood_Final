@@ -59,7 +59,7 @@ module.exports = function (app) {
     const currentUser = req.user;
     Resource.findById(req.params.id)
       .then(function (resource) {
-        User.findById(currentUser)
+        User.find(currentUser)
           .then(function (user) {
             // JM: This works sometimes. Seems to have something to do with the asynchronicity of node callbacks. Need a promise or something.
             user.likedContent.unshift(resource);
